@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4c928"><title>ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ</title>
+
+<style>
+:root{--gold:#f4c928;--gold2:#ffdf55;--ink:#171717;--muted:#777;--paper:#fffdf5;--line:#eee7cf;--shadow:0 8px 28px #6d570d14}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#fff1a8 0,transparent 32%),linear-gradient(135deg,#fffdf5,#fff9df 55%,#fff);color:var(--ink);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}a{color:inherit}.hidden{display:none!important}
+.topbar{height:68px;position:sticky;top:0;z-index:10;background:#fffdf2ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,calc((100% - 1200px)/2));gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-.7px;font-size:20px}.brandmark{width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#ffe66b,#e9ae00);display:grid;place-items:center;color:#161616;font-weight:1000;font-size:24px;box-shadow:inset 0 0 0 2px #fff8}
+.top-actions{display:flex;align-items:center;gap:9px}.iconbtn{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);font-size:18px}.wrap{max-width:1200px;margin:22px auto;padding:0 16px 100px;display:grid;grid-template-columns:220px minmax(0,650px) 260px;gap:20px}
+.panel,.card{background:#fff;border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow)}.sidebar{height:max-content;position:sticky;top:86px;padding:12px}.navitem{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:transparent;padding:12px;border-radius:12px;font-weight:700;color:#4b4637;margin:2px 0}.navitem .ico{width:25px;text-align:center;font-size:19px}.navitem.active,.navitem:hover{background:linear-gradient(90deg,#fff0a0,#fff9dc);color:#171717}.side-note{padding:13px;margin-top:10px;border-radius:14px;background:linear-gradient(135deg,#fff2a9,#fffaf0);font-size:12px;color:#6a5b25}
+.content{min-width:0}.pagehead{display:flex;align-items:center;justify-content:space-between;margin:2px 0 14px}.pagehead h1{font-size:25px;margin:0;letter-spacing:-.8px}.eyebrow{font-size:11px;color:#9b7900;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.card{padding:16px;margin-bottom:14px}.stories{display:flex;gap:13px;overflow:auto;padding:14px}.story{flex:0 0 68px;text-align:center;font-size:11px;font-weight:700;white-space:nowrap}.story-ring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#ffcf00,#ff7d31,#9b5cff);margin:0 auto 5px}.story-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid white}.story.add .story-ring{background:#fff3b0;border:2px dashed #d2a800;padding:0;display:grid;place-items:center;font-size:25px;color:#8b6900}
+.composer{display:flex;gap:11px;align-items:center}.avatar{width:43px;height:43px;border-radius:50%;object-fit:cover;background:#ffe58a;flex:none}.fakeinput{flex:1;text-align:left;padding:12px 15px;border-radius:30px;background:#faf8f0;border:1px solid #eee7d2;color:#8b877b}.primary{background:linear-gradient(135deg,#ffe45c,#efbd00);color:#171717;border-radius:12px;padding:11px 16px;font-weight:850;box-shadow:0 5px 14px #e9bd2933}.secondary{background:#fff8d9;border:1px solid #f0dda0;border-radius:11px;padding:9px 13px;font-weight:750}.posthead{display:flex;align-items:center;gap:10px}.postmeta{flex:1}.postmeta b{display:block}.muted{color:var(--muted);font-size:12px}.more{background:transparent;font-size:21px}.posttext{margin:13px 0;white-space:pre-wrap}.postimg{width:100%;max-height:430px;object-fit:cover;border-radius:13px;background:#fff4c5}.postactions{display:flex;gap:6px;border-top:1px solid #f0eee6;padding-top:10px;margin-top:10px}.action{flex:1;background:transparent;padding:8px 4px;border-radius:9px;font-weight:700;color:#6c685c}.action:hover,.action.liked{background:#fff4bf;color:#9a7100}.commentrow{display:flex;gap:8px;margin-top:10px}.commentrow input{min-width:0;flex:1;border:1px solid var(--line);border-radius:20px;padding:9px 12px}.rightcol .card{padding:15px}.profilemini{display:flex;gap:10px;align-items:center}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;margin-top:14px}.statgrid b{display:block;font-size:18px}.quickrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f2eddf;font-size:13px}.quickrow:last-child{border:0}.comment-item{padding:9px 0;border-bottom:1px solid #f2eddf;font-size:13px}.comment-replies{margin:7px 0 0 22px;padding-left:10px;border-left:2px solid #f0dda0}.text-action{background:transparent;color:#8b6900;font-size:12px;font-weight:800;padding:4px 7px}.inline-menu{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:8px 0}.group-role{font-size:10px;background:#fff1ac;border-radius:20px;padding:4px 8px;font-weight:800}.statlink{background:transparent;border:0;padding:4px;cursor:pointer;color:inherit;font:inherit}.group-more{font-size:20px;background:#fff8d9;border:1px solid #f0dda0;border-radius:10px;padding:5px 12px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #e8e1cc;border-radius:11px;background:#fffdf8;outline:none}input:focus,textarea:focus{border-color:#d7a900;box-shadow:0 0 0 3px #f9df7540}textarea{min-height:95px;resize:vertical}.formgrid{display:grid;gap:10px}.modalback{position:fixed;inset:0;background:#15120bc0;z-index:30;display:grid;place-items:center;padding:16px}.modal{width:min(520px,100%);max-height:90vh;overflow:auto;background:#fffdf5;border-radius:20px;padding:22px;box-shadow:0 25px 90px #0005}.modal h2{margin:0 0 14px}.modalfoot{display:flex;gap:9px;justify-content:flex-end;margin-top:14px}.auth{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 20% 10%,#ffe46c,transparent 35%),linear-gradient(135deg,#171717,#39300e)}.authbox{width:min(430px,100%);background:#fffdf5;border-radius:25px;padding:28px;box-shadow:0 25px 80px #0006}.authbrand{text-align:center;margin-bottom:22px}.authbrand .brandmark{margin:auto;width:62px;height:62px;font-size:34px}.authbrand h1{margin:10px 0 0;font-size:27px}.authbrand p{margin:3px;color:#777}.tabs{display:flex;background:#f5f0df;border-radius:12px;padding:4px;margin:18px 0}.tabs button{flex:1;padding:10px;background:transparent;border-radius:9px;font-weight:800}.tabs button.active{background:#ffdc45}.hint{font-size:12px;color:#777;margin-top:12px}.empty{text-align:center;padding:35px 15px;color:#777}.empty strong{display:block;color:#333;font-size:17px;margin-bottom:4px}.userrow{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #f0ead9}.userrow:last-child{border:0}.userrow .grow{flex:1;min-width:0}.userrow input[type=checkbox]{accent-color:#d7a900}.userrow:has(input[type=checkbox]:checked){background:#fff9df;border-radius:10px;padding-left:8px;padding-right:8px}.pill{font-size:10px;background:#fff1ac;padding:4px 8px;border-radius:20px;font-weight:800}.groupbanner{background:linear-gradient(120deg,#211d10,#735b0a);color:white;border-radius:15px;padding:22px;margin-bottom:13px}.groupbanner h2{margin:0 0 5px}.mobilebar{display:none}
+@media(max-width:980px){.wrap{grid-template-columns:190px minmax(0,1fr)}.rightcol{display:none}}
+@media(max-width:650px){.topbar{height:60px;padding:0 13px}.brand{font-size:17px}.brandmark{width:35px;height:35px}.wrap{display:block;margin:13px auto;padding:0 10px 95px}.sidebar{display:none}.rightcol{display:none}.pagehead h1{font-size:22px}.card{border-radius:16px;padding:13px}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fffdf4f2;backdrop-filter:blur(14px);border-top:1px solid var(--line);justify-content:space-around;padding:7px 2px calc(7px + env(safe-area-inset-bottom))}.mobilebar button{background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:#5f594a;min-width:0;font-weight:700}.mobilebar button span:first-child{font-size:19px}.mobilebar button.active{color:#9b7400}.top-actions .hide-mobile{display:none}}
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.chat-site-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+</style>
+</head>
+<body>
+<div id="auth" class="auth">
+ <div class="authbox">
+  <div class="authbrand"><div class="icon-container">
+    <img src="./IMAGE/IMAGES/logo.png"
+         alt="ᏚᎪᎥᏦᎧ"
+         class="app-icon">
+</div><h1>ᏚᎪᎥᏦᎧ <span style="color:#d6a600">ᏔᎾᎡᏞᎠ</span></h1><p>All in on anonymous social networking application with anonymous chat.</p></div>
+  <div class="tabs"><button id="loginTab" class="active" onclick="setAuthMode('login')">Log in</button><button id="signupTab" onclick="setAuthMode('signup')">Create account</button></div>
+  <form id="authForm" class="formgrid">
+   <div id="nameField" class="hidden"><label class="muted">Your name</label><input id="authName" placeholder="Full name"></div>
+   <div><label class="muted">Username</label><input id="authUsername" placeholder="e.g. rmronyali" autocomplete="username" required></div>
+   <div><label class="muted">Password</label><input id="authPassword" type="password" placeholder="At least 6 characters" autocomplete="current-password" required></div>
+   <button class="primary" type="submit" id="authSubmit">Log in</button>
+  </form>
+  <p id="authError" style="color:#b3261e;font-size:13px"></p><p class="hint">Please use this application at your own risk. We are not responsible for any misuse, unauthorized activities, or consequences resulting from your use of the app.</p>
+ </div>
+</div>
+<div id="app" class="hidden">
+<header class="topbar">
+ <div class="brand"><img src="./IMAGE/IMAGES/logo.png"
+         alt="ᏚᎪᎥᏦᎧ"
+         class="app-icon"></div><span>ᏚᎪᎥᏦᎧ <span style="color:#d6a600">ᏔᎾᎡᏞᎠ</span></span>
+ <div class="top-actions"><button class="iconbtn" title="Search" onclick="navigate('people')">⌕</button><button class="iconbtn" title="Notifications" onclick="navigate('alerts')">♧</button><button class="iconbtn hide-mobile" title="Create post" onclick="openPost()">＋</button><a href="rm.html" title="ᎡᎬᎪᏞ ᎷᎬᏚᏚᎪᏩᎬ" aria-label="Open ChatSite"><img src="./IMAGE/IMAGES/real-message.png" alt="ChatSite" class="chat-site-logo"></a></div></div>
+</header>
+<div class="wrap">
+ <aside class="sidebar panel" id="sideNav"></aside>
+ <main class="content" id="main"><div id="liveStatus" class="card muted hidden" role="status">Connecting to live posts…</div></main>
+ <aside class="rightcol">
+  <div class="card"><div class="eyebrow">Your network</div><div class="profilemini" style="margin-top:10px"><img id="rightAvatar" class="avatar"><div><b id="rightName">Welcome</b><div class="muted" id="rightHandle"></div></div></div><div class="statgrid"><div><b id="statPosts">0</b><span class="muted">Posts</span></div><div><b id="statFriends">0</b><span class="muted">Friends</span></div><div><b id="statGroups">0</b><span class="muted">Groups</span></div></div></div>
+  <div class="card"><div class="eyebrow">Explore</div><div class="quickrow"><span>👥 Find people</span><b onclick="navigate('people')">→</b></div><div class="quickrow"><span>🎬 Watch Reels</span><b onclick="navigate('reels')">→</b></div><div class="quickrow"><span>◎ Discover groups</span><b onclick="navigate('groups')">→</b></div></div>
+  <div class="side-note">✨ A brighter place to connect, share ideas and grow together.</div>
+ </aside>
+</div>
+<nav class="mobilebar" id="mobileNav"></nav>
+</div>
+<div id="modalRoot"></div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='real_message_demo_v1';
+const icons={home:'⌂',reels:'▣',people:'♧',market:'▤',alerts:'♢',profile:'◉',groups:'◎',menu:'☰'};
+const labels={home:'Home',reels:'Reels',people:'People',market:'Market',alerts:'Alerts',profile:'Profile',groups:'Groups',menu:'Menu'};
+let db=loadDB(), current=null, page='home', authMode='login', activeGroupId=null; window.authMode=authMode;
+function loadDB(){try{return JSON.parse(localStorage.getItem(KEY))||{users:[],posts:[],stories:[],groups:[],products:[],alerts:[]}}catch(e){return {users:[],posts:[],stories:[],groups:[],products:[],alerts:[]}}}
+function saveLocalOnly(){localStorage.setItem(KEY,JSON.stringify(db))}
+function save(){saveLocalOnly();if(window.persistRealMessageDB)window.persistRealMessageDB(db)}
+function uid(){return Math.random().toString(36).slice(2,10)}
+function safe(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function avatar(u){return u?.avatar||'https://ui-avatars.com/api/?name='+encodeURIComponent(u?.name||'RM')+'&background=ffe27a&color=302500&bold=true'}
+function userByName(n){return db.users.find(u=>u.username.toLowerCase()===n.toLowerCase())}
+function setAuthMode(m){authMode=m;window.authMode=m;$('loginTab').classList.toggle('active',m==='login');$('signupTab').classList.toggle('active',m==='signup');$('nameField').classList.toggle('hidden',m==='login');$('authSubmit').textContent=m==='login'?'Log in':'Create account';$('authError').textContent=''}
+// Firebase Authentication is initialized in the module script below.
+
+function err(t){$('authError').textContent=t}
+function me(){return db.users.find(u=>u.id===current)}
+function showApp(){$('auth').classList.add('hidden');$('app').classList.remove('hidden');render()}
+window.startRealMessageSession = function(userId, profile){ current=userId; if(window.startRealMessageLiveData)window.startRealMessageLiveData(userId); if(profile){ const i=db.users.findIndex(x=>x.id===userId); if(i>=0) db.users[i]={...db.users[i],...profile}; else db.users.push({...profile,id:userId,friends:[],following:[]}); saveLocalOnly(); } showApp(); };
+function logout(){if(window.realMessageFirebaseSignOut){window.realMessageFirebaseSignOut();return}current=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('authPassword').value=''}
+function openMenuPage(){window.location.href='saiko.html'}
+function navItems(){return ['home','people','alerts','profile','groups','menu']}
+function renderNav(){const navPage=page==='groupchat'?'groups':page;let html=navItems().map(k=>`<button class="navitem ${navPage===k?'active':''}" onclick="${k==='menu'?'openMenuPage()':`navigate('${k}')`}"><span class="ico">${icons[k]}</span>${labels[k]}</button>`).join('');$('sideNav').innerHTML=html+`<button class="navitem" onclick="openPost()"><span class="ico">＋</span>Create post</button><button class="navitem" onclick="logout()"><span class="ico">↪</span>Log out</button>`;$('mobileNav').innerHTML=['home','people','alerts','profile','groups','menu'].map(k=>`<button class="${navPage===k?'active':''}" onclick="${k==='menu'?'openMenuPage()':`navigate('${k}')`}"><span>${icons[k]}</span>${labels[k]}</button>`).join('')}
+function navigate(p){page=p;activeGroupId=null;if(p!=='userprofile')window.viewingUserId=null;render()}
+function render(){let u=me();if(!u)return;renderNav();$('rightAvatar').src=avatar(u);$('rightName').textContent=u.name;$('rightHandle').textContent='@'+u.username;$('statPosts').textContent=db.posts.filter(p=>p.userId===u.id).length;$('statFriends').textContent=(u.following||[]).length;$('statGroups').textContent=db.groups.filter(g=>(g.members||[]).includes(u.id)).length;if(page==='userprofile'&&window.viewingUserId){renderUserProfile(window.viewingUserId);return}if(page==='groupchat'&&activeGroupId){renderGroup(activeGroupId);return}let f={home:homePage,reels:reelsPage,people:peoplePage,market:marketPage,alerts:alertsPage,profile:profilePage,groups:groupsPage,channels:channelsPage}[page]||homePage;$('main').innerHTML=f();if(page==='people')drawPeople()}
+function pageTitle(title,sub=''){return `<div class="pagehead"><div><div class="eyebrow">ᎡᎬᎪᏞ ᎷᎬᏚᏚᎪᏩᎬ – ᏚᎪᎥᏦᎧ</div><h1>${title}</h1>${sub?`<div class="muted">${sub}</div>`:''}</div><button class="primary" onclick="openPost()">Post</button></div>`}
+
+function homePage(){
+  return pageTitle('Your feed','Latest public posts from the TEAM S-H-T community')+
+  `<div class="card"><div class="composer"><img class="avatar" src="${avatar(me())}"><button class="fakeinput" onclick="openPost()">What's on your mind, ${safe((me().name||'').split(' ')[0])}?</button></div><div class="muted" style="margin-top:10px">Share an anonymous post on ᏚᎪᎥᏦᎧ.</div></div>`+
+  `<div class="card"><b>${db.users.length} registered accounts</b><div class="muted">Browse all registered users on the People page.</div><button class="secondary" style="margin-top:9px" onclick="navigate('people')">View registered users</button></div>`+
+  postList(db.posts)
+}
+function showRegisteredUsers(){
+  const el=$('registeredUsers'); if(!el)return;
+  el.classList.toggle('hidden');
+  if(el.classList.contains('hidden'))return;
+  const users=db.users.slice().sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+  el.innerHTML=users.length?users.map(u=>`<div class="userrow"><img class="avatar" src="${avatar(u)}"><div class="grow" style="cursor:pointer" onclick="openUserProfile('${u.id}')"><b>${safe(u.name||'User')}</b><div class="muted">@${safe(u.username||'user')}</div></div><button class="secondary" onclick="openUserProfile('${u.id}')">Profile</button></div>`).join(''):'<p class="muted">No registered accounts found.</p>';
+}
+function postList(posts){
+  posts=(posts||[]).map(p=>({...p,likes:Array.isArray(p.likes)?p.likes:[],comments:Array.isArray(p.comments)?p.comments:[],created:Number(p.created)||0}));
+  if(!posts.length)return `<div class="card empty"><strong>Your feed is just getting started</strong>Share a thought or update with your network.</div>`;
+  return posts.slice().sort((a,b)=>b.created-a.created).map(p=>{
+    let u=db.users.find(x=>x.id===p.userId)||{name:'Deleted user',username:'unknown'};
+    let liked=p.likes.includes(current);
+    const likeUsers=p.likes.map(id=>db.users.find(x=>x.id===id)).filter(Boolean);
+    return `<article class="card" id="post-${p.id}"><div class="posthead"><img class="avatar" src="${avatar(u)}" style="cursor:pointer" onclick="openUserProfile('${u.id}')"><div class="postmeta" style="cursor:pointer" onclick="openUserProfile('${u.id}')"><b>${safe(u.name)}</b><div class="muted">@${safe(u.username)} · ${p.created?new Date(p.created).toLocaleString():''}</div></div>${p.userId===current?`<button class="more" title="Post options" onclick="togglePostMenu('${p.id}')">⋯</button>`:''}</div>${p.userId===current?`<div id="postmenu-${p.id}" class="inline-menu hidden"><button class="secondary" onclick="deletePost('${p.id}')">🗑 Delete post</button></div>`:''}<div class="posttext">${safe(p.text)}</div>${p.link?`<p><a href="${safe(p.link)}" target="_blank" rel="noopener noreferrer">${safe(p.link)}</a></p>`:''}${p.video?`<p><a href="${safe(p.video)}" target="_blank" rel="noopener">▶ Open video</a></p>`:''}<div class="muted"><button class="text-action" onclick="showPostLikes('${p.id}')">${p.likes.length} likes</button> · ${p.comments.length} comments</div><div id="likes-${p.id}" class="hidden muted" style="padding:6px 0">${likeUsers.length?likeUsers.map(x=>`<span>${safe(x.name||x.username)}</span>`).join(' · '):'No likes yet.'}</div><div class="postactions"><button class="action ${liked?'liked':''}" onclick="toggleLike('${p.id}')">${liked?'♥':'♡'} Like</button><button class="action" onclick="focusComment('${p.id}')">▢ Comment</button><button class="action" onclick="sharePost('${p.id}')">↗ Share</button></div><div id="comments-${p.id}">${p.comments.map(c=>renderComment(p.id,c)).join('')}</div><div class="commentrow"><input id="comment-${p.id}" placeholder="Write a comment…"><button class="secondary" onclick="comment('${p.id}')">Send</button></div></article>`;
+  }).join('');
+}
+function renderComment(postId,c){
+  const author=db.users.find(x=>x.id===c.userId);
+  const replies=Array.isArray(c.replies)?c.replies:[];
+  return `<div class="comment-item"><b>${safe(author?.name||'User')}:</b> ${safe(c.text)}<div><button class="text-action" onclick="showReplyBox('${postId}','${c.id}')">Reply</button> <span class="muted">${c.created?new Date(c.created).toLocaleString():''}</span></div><div class="comment-replies">${replies.map(r=>`<div class="comment-item"><b>${safe(db.users.find(x=>x.id===r.userId)?.name||'User')}:</b> ${safe(r.text)}</div>`).join('')}<div id="replybox-${postId}-${c.id}" class="commentrow hidden"><input id="reply-${postId}-${c.id}" placeholder="Write a reply…"><button class="secondary" onclick="replyComment('${postId}','${c.id}')">Reply</button></div></div></div>`;
+}
+function togglePostMenu(id){const el=$('postmenu-'+id);if(el)el.classList.toggle('hidden')}
+function showPostLikes(id){const el=$('likes-'+id);if(el)el.classList.toggle('hidden')}
+function toggleLike(id){let p=db.posts.find(x=>x.id===id);if(!p)return;p.likes=Array.isArray(p.likes)?p.likes:[];if(p.likes.includes(current))p.likes=p.likes.filter(x=>x!==current);else p.likes.push(current);save();render()}
+function focusComment(id){$('comment-'+id)?.focus()}
+function comment(id){
+  const input=$('comment-'+id),v=input?.value.trim();if(!v)return;
+  const p=db.posts.find(x=>x.id===id);if(!p)return;
+  p.comments=Array.isArray(p.comments)?p.comments:[];
+  p.comments.push({id:uid(),userId:current,text:v,created:Date.now(),replies:[]});
+  save();render();
+}
+function showReplyBox(postId,commentId){$('replybox-'+postId+'-'+commentId)?.classList.toggle('hidden');$('reply-'+postId+'-'+commentId)?.focus()}
+function replyComment(postId,commentId){
+  const p=db.posts.find(x=>x.id===postId),c=p?.comments?.find(x=>x.id===commentId);
+  const input=$('reply-'+postId+'-'+commentId),v=input?.value.trim();if(!c||!v)return;
+  c.replies=Array.isArray(c.replies)?c.replies:[];
+  c.replies.push({id:uid(),userId:current,text:v,created:Date.now()});
+  save();render();
+}
+function sharePost(id){let p=db.posts.find(x=>x.id===id);let url=location.href.split('#')[0]+'#post-'+id;if(navigator.share)navigator.share({title:'ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ post',text:p.text,url}).catch(()=>{});else{navigator.clipboard?.writeText(url);alert('Post link copied (demo link).')}}
+function deletePost(id){
+  const post=db.posts.find(x=>x.id===id);if(!post||post.userId!==current)return alert('Only the post owner can delete this post.');
+  confirmInApp('Delete post?','This post will be permanently deleted.','Delete',async()=>{
+    if(!window.deleteRealMessageRecord)throw new Error('Firebase is still connecting. Please wait and try again.');
+    await window.deleteRealMessageRecord('posts',id);
+    db.posts=db.posts.filter(x=>x.id!==id);saveLocalOnly();render();
+  });
+}
+function openModal(title,body,submitText,fn){$('modalRoot').innerHTML=`<div class="modalback" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>${title}</h2>${body}<div class="modalfoot"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" id="modalSubmit">${submitText}</button></div></div></div>`;$('modalSubmit').onclick=fn}
+function closeModal(){$('modalRoot').innerHTML=''}
+function confirmInApp(title,message,buttonLabel,action){
+  openModal(title,`<p>${safe(message)}</p>` ,buttonLabel,async()=>{
+    const btn=$('modalSubmit');if(btn){btn.disabled=true;btn.textContent='Please wait…'}
+    try{await action();closeModal();}
+    catch(error){
+      console.error(title+' failed:',error);
+      const modal=$('modalRoot').querySelector('.modal');
+      if(modal){let note=modal.querySelector('.confirm-error');if(!note){note=document.createElement('p');note.className='confirm-error';note.style.color='#b3261e';modal.insertBefore(note,modal.querySelector('.modalfoot'));}note.textContent=error?.message||'Could not complete this action. Check your connection and Firestore permissions.';}
+      if(btn){btn.disabled=false;btn.textContent=buttonLabel;}
+    }
+  });
+}
+function openPost(){openModal('Create a post',`<div class="formgrid"><textarea id="postText" placeholder="What would you like to share?"></textarea><label class="muted">Add a link (optional)</label><input id="postLink" type="url" placeholder="https://teamsht.com"><div class="hint">what's on your mind ?</div></div>`,'Publish',()=>{let text=$('postText').value.trim(),link=$('postLink').value.trim();if(!text)return alert('Write something before publishing.');if(link&&!/^https?:\/\//i.test(link))return alert('Please enter a valid http:// or https:// link.');db.posts.push({id:uid(),userId:current,text,link,likes:[],comments:[],created:Date.now()});save();closeModal();navigate('home')})}
+function openStory(){openModal('Share a story',`<div class="formgrid"><input id="storyText" placeholder="Add a short story caption"><input id="storyImage" placeholder="Image URL (optional)"></div>`,'Share story',()=>{db.stories.push({id:uid(),userId:current,text:$('storyText').value,image:$('storyImage').value,created:Date.now()});save();closeModal();render()})}
+function viewStory(id){let s=db.stories.find(x=>x.id===id),u=db.users.find(x=>x.id===s.userId);openModal('Story · '+safe(u?.name||'User'),`<p>${safe(s.text||'')}</p>${s.image?`<img class="postimg" src="${safe(s.image)}">`:''}<p class="muted">Stories are visible in this demo for 24 hours.</p>`,'Close',closeModal)}
+function profilePage(){let u=me(),followers=db.users.filter(x=>(x.following||[]).includes(u.id));return pageTitle('Your profile','Your public profile and posts')+`<div class="card"><div style="padding:8px"><h2 style="margin:0">${safe(u.name)}</h2><div class="muted">@${safe(u.username)}</div></div><p><b>Bio</b><br>${safe(u.bio||'')}</p><div class="statgrid"><div><b>${db.posts.filter(p=>p.userId===u.id).length}</b><span class="muted">Posts</span></div><button class="statlink" onclick="showFollowList('followers','${u.id}')"><b>${followers.length}</b><span class="muted" style="display:block">Followers</span></button><button class="statlink" onclick="showFollowList('following','${u.id}')"><b>${(u.following||[]).length}</b><span class="muted" style="display:block">Following</span></button></div><button class="primary" style="width:100%;margin-top:15px" onclick="editProfile()">Edit profile</button></div><h3>Your posts</h3>${postList(db.posts.filter(p=>p.userId===u.id))}`}
+function editProfile(){let u=me();openModal('Edit profile',`<div class="formgrid"><label class="muted">Display name</label><input id="editName" value="${safe(u.name)}"><label class="muted">Bio</label><textarea id="editBio">${safe(u.bio||'')}</textarea><div class="hint">Your bio is shown on your profile. Profile photos and cover photos are disabled.</div></div>`,'Save changes',()=>{u.name=$('editName').value.trim()||u.name;u.bio=$('editBio').value.trim();save();closeModal();render()})}
+function peoplePage(){return pageTitle('Registered users','Browse accounts registered on ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ')+`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px"><b>All registered accounts</b><span class="pill">${db.users.length} users</span></div><input id="peopleSearch" placeholder="Search by username or name…" oninput="drawPeople()"><div id="peopleResults"></div></div>`}
+function drawPeople(){
+  const el=$('peopleResults'); if(!el)return;
+  let q=($('peopleSearch')?.value||'').trim().toLowerCase().replace(/^@/,'');
+  let found=db.users.filter(u=>!q||(u.username||'').toLowerCase().includes(q)||(u.name||'').toLowerCase().includes(q));
+  found.sort((a,b)=>((a.name||'').localeCompare(b.name||'')));
+  el.innerHTML=found.length?found.map(u=>{
+    const isMe=u.id===current;
+    const following=(me()?.following||[]).includes(u.id);
+    const followsBack=(u.following||[]).includes(current);
+    return `<div class="userrow"><img class="avatar" src="${avatar(u)}"><div class="grow" style="cursor:pointer" onclick="${isMe?"navigate('profile')":`openUserProfile('${u.id}')`}"><b>${safe(u.name||'User')} ${isMe?'<span class="pill">You</span>':''}</b><div class="muted">@${safe(u.username||'user')} ${!isMe&&followsBack?'· Follows you':''}</div></div>${!isMe?`<button class="secondary" onclick="toggleFriend('${u.id}')">${following?'Following':followsBack?'Follow back':'Follow'}</button>`:''}<button class="secondary" onclick="${isMe?"navigate('profile')":`openUserProfile('${u.id}')`}">Profile</button></div>`;
+  }).join(''):'<div class="empty">No registered accounts match your search.</div>';
+}
+
+function openUserProfile(id){
+  const u=db.users.find(x=>x.id===id); if(!u)return alert('This profile is not available yet. Refresh or check user read permissions.');
+  page='userprofile'; window.viewingUserId=id; renderUserProfile(id);
+}
+function renderUserProfile(id){
+  const u=db.users.find(x=>x.id===id); if(!u){page='people';render();return;}
+  const following=(me().following||[]).includes(id), followsBack=(u.following||[]).includes(current);
+  $('main').innerHTML=pageTitle('User profile','Public profile and posts')+
+  `<div class="card"><h2 style="margin:0">${safe(u.name||'User')}</h2><div class="muted">@${safe(u.username||'user')}</div><p>${safe(u.bio||u.publicBio||'No bio added yet.')}</p><div class="statgrid"><div><b>${db.posts.filter(p=>p.userId===id).length}</b><span class="muted">Posts</span></div><button class="statlink" onclick="showFollowList('followers','${id}')"><b>${db.users.filter(x=>(x.following||[]).includes(id)).length}</b><span class="muted" style="display:block">Followers</span></button><button class="statlink" onclick="showFollowList('following','${id}')"><b>${(u.following||[]).length}</b><span class="muted" style="display:block">Following</span></button></div><div style="display:flex;gap:8px;margin-top:14px"><button class="primary" onclick="toggleFriend('${id}')">${following?'Unfollow':followsBack?'Follow back':'Follow'}</button><button class="secondary" onclick="navigate('people')">Back to people</button></div></div><h3>Posts by ${safe(u.name||'User')}</h3>${postList(db.posts.filter(p=>p.userId===id))}`;
+}
+function showFollowList(kind,userId){
+  const target=db.users.find(x=>x.id===userId);if(!target)return;
+  const ids=kind==='followers'?db.users.filter(x=>(x.following||[]).includes(userId)).map(x=>x.id):(target.following||[]);
+  const people=ids.map(id=>db.users.find(x=>x.id===id)).filter(Boolean);
+  const title=kind==='followers'?'Followers':'Following';
+  const body=people.length?people.map(u=>`<div class="userrow"><div class="grow"><b>${safe(u.name||'User')}</b><div class="muted">@${safe(u.username||'user')}</div></div><button class="secondary" onclick="closeModal();openUserProfile('${u.id}')">Profile</button></div>`).join(''):'<div class="empty">No users to show yet.</div>';
+  openModal(title,`<div>${body}</div>`,'Close',closeModal);
+}
+function toggleFriend(id){
+  const u=me(); if(!u)return;
+  u.following=Array.isArray(u.following)?u.following:[];
+  const target=db.users.find(x=>x.id===id); if(!target)return;
+  if(u.following.includes(id)) u.following=u.following.filter(x=>x!==id);
+  else {
+    u.following.push(id);
+    db.alerts.push({id:uid(),userId:id,actorId:current,type:'follow',text:'@'+(u.username||'user')+' followed you',created:Date.now()});
+  }
+  save();
+  if(page==='people')drawPeople(); else if(page==='userprofile')renderUserProfile(id);
+  renderNav();
+}
+function groupAdmins(g){const ids=Array.isArray(g.adminIds)?g.adminIds:(g.adminId?[g.adminId]:[]);return [...new Set(ids.filter(id=>(g.members||[]).includes(id)&&id!==g.ownerId))]}
+function isGroupOwner(g){return g.ownerId===current}
+function isGroupAdmin(g){return isGroupOwner(g)||groupAdmins(g).includes(current)}
+function groupsPage(){
+  return pageTitle('Groups & communities','Open a group to see its posts and members')+
+  `<div class="groupbanner"><div class="eyebrow" style="color:#ffe16a">YOUR COMMUNITY</div><h2>Better together.</h2><p style="margin:0;color:#eee2b0">Create a space for shared interests.</p><button class="primary" style="margin-top:12px" onclick="createGroup(false)">＋ Create group</button></div>`+
+  (db.groups.filter(g=>(g.members||[]).includes(current)||!g.private).length?db.groups.filter(g=>(g.members||[]).includes(current)||!g.private).map(g=>`<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div style="cursor:pointer;flex:1" onclick="openGroup('${g.id}')"><b>◎ ${safe(g.name)}</b><div class="muted">${(g.members||[]).length} members · ${g.private?'Private':'Public'} · ${(g.members||[]).includes(current)?(g.ownerId===current?'Owner':isGroupAdmin(g)?'Admin':'Member'):'Public group'}</div><p style="margin-bottom:0">${safe(g.description||'')}</p></div><button class="secondary" onclick="joinGroup('${g.id}')">${(g.members||[]).includes(current)?(g.ownerId===current?'Owner':'Leave'):(g.private?'Invite only':'Join')}</button><button class="secondary" onclick="openGroup('${g.id}')">${(g.members||[]).includes(current)?'Open':'View'}</button></div></div>`).join(''):`<div class="card empty"><strong>No groups yet</strong>Create a group or join one when invited.</div>`);
+}
+function openGroup(id){
+  const g=db.groups.find(x=>x.id===id);if(!g)return alert('Group not found.');
+  if(!(g.members||[]).includes(current))return alert(g.private?'This is a private group. Ask an admin to add you.':'Join this group before opening its conversation.');
+  page='groupchat';activeGroupId=id;render();
+}
+function renderGroup(id){
+  const g=db.groups.find(x=>x.id===id);
+  if(!g){page='groups';activeGroupId=null;render();return;}
+  const member=(g.members||[]).includes(current),owner=isGroupOwner(g),admin=isGroupAdmin(g);
+  if(!member){page='groups';activeGroupId=null;render();return;}
+  const canPost=g.private?member:admin;
+  const members=(g.members||[]).map(mid=>db.users.find(u=>u.id===mid)).filter(Boolean);
+  const msgs=Array.isArray(g.messages)?g.messages:[];
+  $('main').innerHTML=pageTitle(safe(g.name),'Group conversation')+
+    `<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><h3 style="margin:0">${safe(g.name)}</h3><button class="group-more" aria-label="Group options" onclick="toggleGroupMenu('${g.id}')">•••</button></div><div id="groupmenu-${g.id}" class="inline-menu hidden"><button class="secondary" onclick="showGroupMembers('${g.id}')">👥 View members (${members.length})</button>${owner?`<button class="secondary" onclick="renameGroup('${g.id}')">Rename group</button><button class="secondary" onclick="manageGroupAdmins('${g.id}')">Manage admins</button><button class="secondary" onclick="deleteGroup('${g.id}')">Delete group</button>`:''}</div><p>${safe(g.description||'')}</p><div class="muted">${members.length} members · ${owner?'You are the group owner':admin?'You are an admin':'You are a member'}</div></div>`+
+    `<div id="groupmembers-${g.id}" class="card hidden"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><h3 style="margin:0">Group members (${members.length})</h3><button class="secondary" onclick="hideGroupMembers('${g.id}')">Close</button></div>${admin?`<div class="inline-menu"><button class="secondary" onclick="addGroupMembers('${g.id}')">＋ Add members</button></div>`:''}${members.length?members.map(u=>`<div class="userrow"><div class="grow"><b>${safe(u.name||'User')}</b><div class="muted">@${safe(u.username||'user')}</div></div><span class="group-role">${g.ownerId===u.id?'Owner':groupAdmins(g).includes(u.id)?'Admin':'Member'}</span><button class="secondary" onclick="openUserProfile('${u.id}')">Profile</button>${owner&&u.id!==g.ownerId?`<button class="secondary" onclick="removeGroupMember('${g.id}','${u.id}')">Remove</button>`:''}${owner&&u.id!==g.ownerId&&groupAdmins(g).includes(u.id)?`<button class="secondary" onclick="removeGroupAdmin('${g.id}','${u.id}')">Remove admin</button>`:''}</div>`).join(''):`<p class="muted">No registered member accounts are available.</p>`}</div>`+
+    `<div class="card"><h3>Group messages</h3><div class="muted">${g.private?'All group members can send messages.': 'Only the group owner and admins can send messages in this public group.'} users can delete own messages within 15 minutes of sending.</div>${msgs.length?msgs.map(m=>{const canDelete=m.userId===current&&Date.now()-Number(m.created||0)<=15*60*1000;return `<div class="quickrow"><div style="flex:1"><b>${safe(db.users.find(u=>u.id===m.userId)?.name||'Member')}</b><p style="margin:3px 0">${safe(m.text)}</p><span class="muted">${m.created?new Date(m.created).toLocaleString():''}</span></div>${canDelete?`<button class="text-action" onclick="deleteGroupMessage('${g.id}','${m.id}')">Delete</button>`:''}</div>`}).join(''):`<div class="empty">No messages yet.</div>`}`+
+    `${canPost?`<div class="commentrow"><input id="groupMessage" placeholder="Write a group message…"><button class="primary" onclick="sendGroupMessage('${g.id}')">Send</button></div>`:`<div class="hint">This public group is read-only for members. Only the owner and admins can post messages.</div>`}`+
+    `<button class="secondary" style="margin:12px 0 0 8px" onclick="navigate('groups')">Back to groups</button></div>`;
+}
+function toggleGroupMenu(id){$('groupmenu-'+id)?.classList.toggle('hidden')}
+function showGroupMembers(id){const menu=$('groupmenu-'+id),panel=$('groupmembers-'+id);menu?.classList.add('hidden');panel?.classList.remove('hidden')}
+function hideGroupMembers(id){$('groupmembers-'+id)?.classList.add('hidden')}
+function renameGroup(id){
+  const g=db.groups.find(x=>x.id===id);if(!g||!isGroupOwner(g))return alert('Only the group owner can rename this group.');
+  openModal('Rename group',`<input id="newGroupName" value="${safe(g.name)}" placeholder="Group name">`,'Save name',()=>{const name=$('newGroupName').value.trim();if(!name)return alert('Enter a group name.');g.name=name;save();closeModal();openGroup(id)});
+}
+async function sendGroupMessage(id){
+  const g=db.groups.find(x=>x.id===id);if(!g||!(g.members||[]).includes(current))return alert('Only group members can send messages.');
+  if(!g.private&&!isGroupAdmin(g))return alert('Only the public group owner and admins can send messages.');
+  const input=$('groupMessage'),textValue=input?.value.trim();if(!textValue)return;
+  const message={id:uid(),userId:current,text:textValue,created:Date.now()};
+  g.messages=Array.isArray(g.messages)?g.messages:[];
+  g.messages.push(message);g.updatedAt=Date.now();
+  try{
+    if(!window.persistRealMessageRecord)throw new Error('Firebase is still connecting. Please wait and try again.');
+    await window.persistRealMessageRecord('groups',g);
+    saveLocalOnly();page='groupchat';activeGroupId=id;render();
+  }catch(error){
+    g.messages=g.messages.filter(m=>m.id!==message.id);
+    saveLocalOnly();
+    alert('Message could not be sent. Check your internet connection and Firestore group write permissions.');
+    console.error('Group message send failed:',error);
+  }
+}
+function deleteGroupMessage(groupId,messageId){
+  const g=db.groups.find(x=>x.id===groupId);if(!g)return;
+  const m=(g.messages||[]).find(x=>x.id===messageId);if(!m||m.userId!==current)return alert('Only the message sender can delete this message.');
+  if(Date.now()-Number(m.created||0)>15*60*1000)return alert('The 15-minute delete period has expired.');
+  confirmInApp('Delete message?','This group message will be permanently deleted.','Delete',async()=>{
+    const oldMessages=g.messages.slice();
+    g.messages=g.messages.filter(x=>x.id!==messageId);g.updatedAt=Date.now();
+    try{
+      if(!window.persistRealMessageRecord)throw new Error('Firebase is still connecting. Please wait and try again.');
+      await window.persistRealMessageRecord('groups',g);
+      saveLocalOnly();page='groupchat';activeGroupId=groupId;render();
+    }catch(error){g.messages=oldMessages;saveLocalOnly();throw error;}
+  });
+}
+let groupInviteSelected = new Set();
+let groupInviteGroupId = null;
+
+function drawGroupInviteUsers(){
+  const g=db.groups.find(x=>x.id===groupInviteGroupId);
+  const list=$('groupInviteResults');
+  if(!g||!list)return;
+  const q=($('groupInviteSearch')?.value||'').trim().toLowerCase().replace(/^@/,'');
+  const candidates=db.users
+    .filter(u=>u.id!==current&&!(g.members||[]).includes(u.id))
+    .filter(u=>!q||(u.username||'').toLowerCase().includes(q)||(u.name||'').toLowerCase().includes(q))
+    .sort((a,b)=>{
+      const au=(a.username||'').toLowerCase(),bu=(b.username||'').toLowerCase();
+      const ap=q&&au.startsWith(q)?0:1,bp=q&&bu.startsWith(q)?0:1;
+      return ap-bp||(au.localeCompare(bu));
+    });
+  list.innerHTML=candidates.length?candidates.map(u=>`
+    <label class="userrow" style="cursor:pointer">
+      <input type="checkbox" class="groupInvite" value="${safe(u.id)}" style="width:19px;height:19px;flex:none;margin:0"
+        ${groupInviteSelected.has(u.id)?'checked':''}
+        onchange="toggleGroupInviteSelection('${safe(u.id)}',this.checked)">
+      <img class="avatar" src="${avatar(u)}">
+      <span class="grow"><b>${safe(u.name||'User')}</b><span class="muted" style="display:block">@${safe(u.username||'user')}</span></span>
+    </label>`).join(''):'<div class="empty">No matching users found. Check the username or try another search.</div>';
+  const count=$('groupInviteCount');
+  if(count)count.textContent=groupInviteSelected.size+' selected';
+}
+function toggleGroupInviteSelection(userId,checked){
+  if(checked)groupInviteSelected.add(userId);else groupInviteSelected.delete(userId);
+  const count=$('groupInviteCount');
+  if(count)count.textContent=groupInviteSelected.size+' selected';
+}
+async function addGroupMembers(id){
+  const g=db.groups.find(x=>x.id===id);if(!g||!isGroupAdmin(g))return alert('Only an admin or owner can add members.');
+  groupInviteGroupId=id;
+  groupInviteSelected=new Set();
+  openModal('Add group members',`
+    <div class="formgrid">
+      <p class="muted" style="margin:0">Search by exact or partial username, or by display name. Select multiple users before adding.</p>
+      <input id="groupInviteSearch" type="search" autocomplete="off" placeholder="Search username (e.g. @rmronyali)…" oninput="drawGroupInviteUsers()">
+      <div style="display:flex;justify-content:space-between;align-items:center"><b>Available users</b><span id="groupInviteCount" class="pill">0 selected</span></div>
+      <div id="groupInviteResults" style="max-height:48vh;overflow:auto"></div>
+      <div class="hint">Existing group members are hidden and will not be removed when you add new members.</div>
+    </div>`,'Add selected',async()=>{
+      const selected=[...groupInviteSelected].filter(userId=>userId!==current&&!(g.members||[]).includes(userId)&&db.users.some(u=>u.id===userId));
+      if(!selected.length)return alert('Select at least one new user.');
+      // Merge only: never replace the current member list.
+      g.members=[...new Set([...(Array.isArray(g.members)?g.members:[]),...selected])];
+      g.updatedAt=Date.now();
+      selected.forEach(userId=>db.alerts.push({id:uid(),userId,actorId:current,type:'group_added',groupId:g.id,text:'You were added to the group “'+g.name+'”.',created:Date.now()}));
+      if(!window.persistRealMessageRecord)throw new Error('Firebase is still connecting. Please wait and try again.');
+      await window.persistRealMessageRecord('groups',g);
+      saveLocalOnly();
+      closeModal();
+      groupInviteSelected=new Set();
+      openGroup(id);
+    });
+  drawGroupInviteUsers();
+}
+function manageGroupAdmins(id){
+  const g=db.groups.find(x=>x.id===id);if(!g||!isGroupOwner(g))return alert('Only the group owner can manage admins.');
+  const candidates=(g.members||[]).filter(mid=>mid!==g.ownerId);
+  openModal('Manage group admins',candidates.length?`<div class="formgrid">${candidates.map(mid=>{const u=db.users.find(x=>x.id===mid);return u?`<label><input type="checkbox" class="groupAdmin" value="${mid}" style="width:auto" ${groupAdmins(g).includes(mid)?'checked':''}> ${safe(u.name||'User')} <span class="muted">@${safe(u.username||'user')}</span></label>`:''}).join('')}</div>`:'<p>Add members before assigning admins.</p>','Save admins',()=>{
+    g.adminIds=Array.from(document.querySelectorAll('.groupAdmin:checked')).map(x=>x.value).filter(uid=>(g.members||[]).includes(uid)&&uid!==g.ownerId);
+    g.adminId=g.adminIds[0]||g.ownerId;save();closeModal();openGroup(id);
+  });
+}
+function removeGroupMember(groupId,userId){
+  const g=db.groups.find(x=>x.id===groupId);if(!g||!isGroupOwner(g))return alert('Only the group owner can remove members.');
+  if(userId===g.ownerId)return alert('The group owner cannot be removed.');
+  confirmInApp('Remove member?','This user will be removed from the group.','Remove',async()=>{
+    g.members=(g.members||[]).filter(x=>x!==userId);
+    g.adminIds=groupAdmins(g).filter(x=>x!==userId);
+    g.adminId=g.adminIds[0]||g.ownerId;g.updatedAt=Date.now();
+    db.alerts.push({id:uid(),userId,actorId:current,type:'group_removed',groupId:g.id,text:'You were removed from the group “'+g.name+'”.',created:Date.now()});
+    if(window.persistRealMessageRecord)await window.persistRealMessageRecord('groups',g);
+    save();openGroup(groupId);
+  });
+}
+function removeGroupAdmin(groupId,userId){
+  const g=db.groups.find(x=>x.id===groupId);if(!g||!isGroupOwner(g))return alert('Only the group owner can remove admins.');
+  g.adminIds=groupAdmins(g).filter(x=>x!==userId);g.adminId=g.adminIds[0]||g.ownerId;save();openGroup(groupId);
+}
+function deleteGroup(id){
+  const g=db.groups.find(x=>x.id===id);if(!g||!isGroupOwner(g))return alert('Only the group owner can delete this group.');
+  confirmInApp('Delete group?','This group and all its messages will be permanently deleted.','Delete group',async()=>{
+    if(!window.deleteRealMessageRecord)throw new Error('Firebase is still connecting. Please wait and try again.');
+    await window.deleteRealMessageRecord('groups',id);
+    db.groups=db.groups.filter(x=>x.id!==id);saveLocalOnly();activeGroupId=null;navigate('groups');
+  });
+}
+function channelsPage(){return pageTitle('Channels','Follow updates from creators and communities')+`<div class="card"><p>Channels are public broadcast spaces. Create one to share updates with followers.</p><button class="primary" onclick="createGroup(true)">＋ Create channel</button></div>`+db.groups.filter(g=>g.channel).map(g=>`<div class="card"><b>📣 ${safe(g.name)}</b><p class="muted">${g.members.length} subscribers</p><button class="secondary" onclick="joinGroup('${g.id}')">${g.members.includes(current)?'Following':'Follow channel'}</button></div>`).join('')}
+function createGroup(channel){openModal(channel?'Create a channel':'Create a group',`<div class="formgrid"><input id="groupName" placeholder="${channel?'Channel':'Group'} name"><textarea id="groupDesc" placeholder="What is this community about?"></textarea><label><input type="checkbox" id="groupPrivate" style="width:auto"> Private ${channel?'channel':'group'}</label></div>`,'Create',()=>{let name=$('groupName').value.trim();if(!name)return alert('Please enter a name.');db.groups.push({id:uid(),name,description:$('groupDesc').value,private:$('groupPrivate').checked,channel,members:[current],adminIds:[],adminId:current,ownerId:current,messages:[],created:Date.now()});save();closeModal();render();openGroup(db.groups[db.groups.length-1].id)})}
+function joinGroup(id){let g=db.groups.find(x=>x.id===id);if(!g)return;g.members=Array.isArray(g.members)?g.members:[];if(g.members.includes(current)){if(g.ownerId===current)return alert('The group owner cannot leave their own group. Delete the group if you no longer need it.');g.members=g.members.filter(x=>x!==current);g.adminIds=groupAdmins(g).filter(x=>x!==current);g.adminId=g.adminIds[0]||g.ownerId}else{if(g.private)return alert('This is a private group. Ask an admin to add you.');g.members.push(current)}save();render()}
+function reelsPage(){let videos=db.posts.filter(p=>p.video);return pageTitle('Reels','Short videos from your community')+`<div class="card"><p>Share a video link as a Reel.</p><button class="primary" onclick="openReel()">＋ Add Reel</button></div>`+(videos.length?videos.map(p=>`<div class="card"><div class="posthead"><img class="avatar" src="${avatar(db.users.find(u=>u.id===p.userId))}"><b>@${safe(db.users.find(u=>u.id===p.userId)?.username||'user')}</b></div><p>${safe(p.text)}</p><a href="${safe(p.video)}" target="_blank" rel="noopener">▶ Open video</a></div>`).join(''):`<div class="card empty"><strong>No Reels yet</strong>Be the first to share a video.</div>`)}
+function openReel(){openModal('Add a Reel',`<div class="formgrid"><textarea id="reelText" placeholder="Caption"></textarea><input id="reelVideo" placeholder="Public video URL"></div>`,'Publish Reel',()=>{let video=$('reelVideo').value.trim();if(!video)return alert('Add a video URL.');db.posts.push({id:uid(),userId:current,text:$('reelText').value,video,likes:[],comments:[],created:Date.now()});save();closeModal();render()})}
+function marketPage(){return pageTitle('Marketplace','Discover items shared by the community')+`<div class="card"><button class="primary" onclick="addProduct()">＋ List an item</button></div>`+(db.products.length?db.products.map(p=>`<div class="card"><h3>${safe(p.title)}</h3><b>৳ ${safe(p.price)}</b><p class="muted">Listed by @${safe(db.users.find(u=>u.id===p.userId)?.username||'user')}</p><p>${safe(p.description)}</p><button class="secondary" onclick="alert('Demo marketplace: contact the seller through their profile.')">Contact seller</button></div>`).join(''):`<div class="card empty"><strong>Marketplace is waiting for its first listing</strong>Share something with your community.</div>`)}
+function addProduct(){openModal('List an item',`<div class="formgrid"><input id="prodTitle" placeholder="Item name"><input id="prodPrice" placeholder="Price (BDT)"><textarea id="prodDesc" placeholder="Description"></textarea></div>`,'Publish listing',()=>{let title=$('prodTitle').value.trim();if(!title)return alert('Add an item name.');db.products.push({id:uid(),userId:current,title,price:$('prodPrice').value,description:$('prodDesc').value,created:Date.now()});save();closeModal();render()})}
+function alertsPage(){let a=db.alerts.filter(x=>x.userId===current).sort((x,y)=>y.created-x.created);return pageTitle('Notifications','Updates from your ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ  network')+(a.length?a.map(x=>{const actor=db.users.find(u=>u.id===x.actorId);return `<div class="card">♢ ${safe(x.text)}${actor?`<button class="secondary" style="margin-left:8px" onclick="openUserProfile('${actor.id}')">Open profile</button>`:''}${x.type==='follow'&&actor?`<button class="secondary" style="margin-left:8px" onclick="toggleFriend('${actor.id}')">${(me().following||[]).includes(actor.id)?'Following':'Follow back'}</button>`:''}${x.groupId&&db.groups.some(g=>g.id===x.groupId&&(g.members||[]).includes(current))?`<button class="secondary" style="margin-left:8px" onclick="openGroup('${x.groupId}')">Open group</button>`:''}<div class="muted">${new Date(x.created).toLocaleString()}</div></div>`}).join(''):`<div class="card empty"><strong>You're all caught up</strong>New activity will appear here.</div>`)}
+// Live content is loaded from Firestore after authentication.
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, deleteDoc, runTransaction, serverTimestamp, collection, onSnapshot, query, where, orderBy, limit
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAYYzIm-saQ87grnhC0utkpnGAeSeFsf4I",
+  authDomain: "saiko-c58c8.firebaseapp.com",
+  projectId: "saiko-c58c8",
+  storageBucket: "saiko-c58c8.firebasestorage.app",
+  messagingSenderId: "813061223813",
+  appId: "1:813061223813:web:13761818a278963bef40ec",
+  measurementId: "G-CL9NMEWX5C"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
+try {
+  if (await isSupported()) getAnalytics(app);
+} catch (error) {
+  console.info("Firebase Analytics is unavailable in this browser.", error);
+}
+
+// Firebase Email/Password requires an email-shaped identifier.
+// This app maps each username to a private internal sign-in address.
+// Users still enter only their username and password in the UI.
+
+// Live Firestore collections keep accounts, posts, follows, comments and alerts
+// synchronized across signed-in devices. Each record is stored in its own document.
+const liveCollections = ["users", "posts", "groups", "products", "alerts"];
+const liveUnsubs = [];
+const syncedVersions = new Map();
+let applyingRemote = false;
+let loadedCollections = new Set();
+let activeLiveUser = null;
+
+function normalizeRecord(name, data, id) {
+  const record = {id, ...data};
+  if (name === "posts") {
+    record.likes = Array.isArray(record.likes) ? record.likes : [];
+    record.comments = Array.isArray(record.comments) ? record.comments.map(c => ({...c, id:c.id||uid(), replies:Array.isArray(c.replies)?c.replies:[]})) : [];
+    record.created = Number(record.created) || 0;
+    record.text = typeof record.text === "string" ? record.text : "";
+  }
+  if (name === "users") {
+    record.friends = Array.isArray(record.friends) ? record.friends : [];
+    record.following = Array.isArray(record.following) ? record.following : [];
+  }
+  if (name === "groups") { record.members = Array.isArray(record.members) ? record.members : []; record.adminIds = Array.isArray(record.adminIds) ? record.adminIds : (record.adminId ? [record.adminId] : []); record.messages = Array.isArray(record.messages) ? record.messages : []; }
+  return record;
+}
+
+window.deleteRealMessageRecord = async (collectionName, recordId) => {
+  await deleteDoc(doc(firestore, collectionName, recordId));
+  syncedVersions.delete(collectionName + '/' + recordId);
+};
+window.persistRealMessageRecord = async (collectionName, item) => {
+  const id=String(item?.id||item?.uid||'');if(!id)throw new Error('Missing record ID.');
+  const clean={...item};delete clean.id;
+  if(collectionName==='users')clean.bio=clean.bio||clean.publicBio||'';
+  await setDoc(doc(firestore,collectionName,id),clean,{merge:true});
+  syncedVersions.set(collectionName+'/'+id,JSON.stringify(clean));
+};
+
+window.persistRealMessageDB = async data => {
+  if (applyingRemote) return;
+  for (const name of liveCollections) {
+    for (const item of (data[name] || [])) {
+      const id = String(item.id || item.uid || "");
+      if (!id) continue;
+      const clean = {...item};
+      delete clean.id;
+      if (name === "users") clean.bio = clean.bio || clean.publicBio || "";
+      const key = name + "/" + id;
+      const payload = JSON.stringify(clean);
+      if (syncedVersions.get(key) === payload) continue;
+      try {
+        await setDoc(doc(firestore, name, id), clean, {merge:true});
+        syncedVersions.set(key, payload);
+      } catch (error) {
+        console.error("Could not sync " + key + ":", error);
+        const box = document.getElementById("liveStatus");
+        if (box) {
+          box.textContent = "Could not save " + name + ". Check Firestore Rules and your account permissions.";
+          box.classList.remove("hidden");
+        }
+      }
+    }
+  }
+};
+
+function startLiveData(userId) {
+  if (activeLiveUser === userId && liveUnsubs.length) return;
+  activeLiveUser = userId;
+  liveUnsubs.splice(0).forEach(fn => fn());
+  loadedCollections = new Set();
+  syncedVersions.clear();
+  db = {users:[], posts:[], stories:[], groups:[], products:[], alerts:[]};
+  saveLocalOnly();
+  const status = document.getElementById("liveStatus");
+  if (status) { status.textContent = "Connecting to live posts…"; status.classList.remove("hidden"); }
+
+  for (const name of liveCollections) {
+    // Private groups are read only by members; public groups remain discoverable.
+    if (name === "groups") {
+      const groupSources = {public: [], member: []};
+      const readySources = new Set();
+      const applyGroupSnapshot = (sourceName, snapshot) => {
+        applyingRemote = true;
+        groupSources[sourceName] = snapshot.docs.map(d => normalizeRecord("groups", d.data(), d.id));
+        const merged = new Map();
+        [...groupSources.public, ...groupSources.member].forEach(g => {
+          const previous=merged.get(g.id);
+          if(!previous||Number(g.updatedAt||0)>=Number(previous.updatedAt||0))merged.set(g.id,g);
+        });
+        const records = [...merged.values()];
+        for (const record of records) { const clean = {...record}; delete clean.id; syncedVersions.set("groups/" + record.id, JSON.stringify(clean)); }
+        db.groups = records;
+        readySources.add(sourceName);
+        if (readySources.size === 2) loadedCollections.add("groups");
+        saveLocalOnly();
+        applyingRemote = false;
+        if (loadedCollections.size === liveCollections.length && readySources.size === 2) {
+          const liveStatus = document.getElementById("liveStatus");
+          if (liveStatus) liveStatus.classList.add("hidden");
+        }
+        if (current && !document.getElementById("app").classList.contains("hidden")) render();
+      };
+      const publicGroups = onSnapshot(
+        query(collection(firestore, "groups"), where("private", "==", false)),
+        snapshot => applyGroupSnapshot("public", snapshot),
+        error => showLiveError("groups", error)
+      );
+      const memberGroups = onSnapshot(
+        query(collection(firestore, "groups"), where("members", "array-contains", userId)),
+        snapshot => applyGroupSnapshot("member", snapshot),
+        error => showLiveError("groups", error)
+      );
+      liveUnsubs.push(publicGroups, memberGroups);
+      continue;
+    }
+
+    // Load only the newest 100 posts to keep startup fast.
+    const source = name === "posts"
+      ? query(collection(firestore, name), orderBy("created", "desc"), limit(100))
+      : name === "alerts"
+        ? query(collection(firestore, name), where("userId", "==", userId))
+        : collection(firestore, name);
+
+    const unsub = onSnapshot(source, snapshot => {
+      applyingRemote = true;
+      const records = snapshot.docs.map(d => normalizeRecord(name, d.data(), d.id));
+      for (const record of records) { const clean = {...record}; delete clean.id; if (name === 'users') clean.bio = clean.bio || clean.publicBio || ''; syncedVersions.set(name + '/' + record.id, JSON.stringify(clean)); }
+      db[name] = name === "posts"
+        ? records.sort((a,b) => b.created - a.created)
+        : records;
+
+      if (name === "users") {
+        const own = records.find(u => u.id === userId || u.uid === userId);
+        if (own) {
+          current = userId;
+          const idx = db.users.findIndex(u => u.id === userId);
+          if (idx >= 0) db.users[idx] = {...db.users[idx], ...own};
+        }
+      }
+
+      loadedCollections.add(name);
+      saveLocalOnly();
+      applyingRemote = false;
+
+      if (loadedCollections.size === liveCollections.length) {
+        const liveStatus = document.getElementById("liveStatus");
+        if (liveStatus) liveStatus.classList.add("hidden");
+      }
+      if (current && !document.getElementById("app").classList.contains("hidden")) render();
+    }, error => {
+      console.error("Realtime listener error (" + name + "):", error);
+      applyingRemote = false;
+      const liveStatus = document.getElementById("liveStatus");
+      if (liveStatus) {
+        liveStatus.textContent = "Could not load " + name + ". Check Firestore read permissions.";
+        liveStatus.classList.remove("hidden");
+      }
+    });
+    liveUnsubs.push(unsub);
+  }
+}
+function showLiveError(name, error) {
+  console.error("Realtime listener error (" + name + "):", error);
+  applyingRemote = false;
+  const liveStatus = document.getElementById("liveStatus");
+  if (liveStatus) {
+    liveStatus.textContent = "Could not load " + name + ". Check Firestore read permissions.";
+    liveStatus.classList.remove("hidden");
+  }
+}
+window.startRealMessageLiveData = startLiveData;
+const usernameEmail = username => `${username.toLowerCase()}@users.realmessage.app`;
+const usernamePattern = /^[a-z0-9._]{3,20}$/;
+
+const form = document.getElementById("authForm");
+const errorBox = document.getElementById("authError");
+const submitButton = document.getElementById("authSubmit");
+
+function showError(message) {
+  errorBox.textContent = message;
+}
+function firebaseMessage(error) {
+  const code = error?.code || "";
+  const messages = {
+    "auth/email-already-in-use": "This username is already registered.",
+    "auth/invalid-credential": "Username or password is incorrect.",
+    "auth/user-not-found": "Username or password is incorrect.",
+    "auth/wrong-password": "Username or password is incorrect.",
+    "auth/weak-password": "Please choose a stronger password (at least 6 characters).",
+    "auth/too-many-requests": "Too many attempts. Please try again later.",
+    "auth/network-request-failed": "Network error. Check your internet connection.",
+    "permission-denied": "Firestore permission denied. Please publish the Firebase security rules."
+  };
+  return messages[code] || error?.message || "Something went wrong. Please try again.";
+}
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  errorBox.textContent = "";
+  const username = document.getElementById("authUsername").value.trim().replace(/^@/, "").toLowerCase();
+  const password = document.getElementById("authPassword").value;
+  const name = document.getElementById("authName").value.trim();
+
+  if (!usernamePattern.test(username)) {
+    showError("Username must be 3–20 characters (letters, numbers, . or _).");
+    return;
+  }
+  if (password.length < 6) {
+    showError("Password must contain at least 6 characters.");
+    return;
+  }
+  if (window.authMode === "signup" && !name) {
+    showError("Please enter your name.");
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Please wait…";
+  try {
+    if (document.getElementById("signupTab").classList.contains("active")) {
+      // Reserve the username atomically, so two accounts cannot claim it.
+      const usernameRef = doc(firestore, "usernames", username);
+      const credential = await createUserWithEmailAndPassword(auth, usernameEmail(username), password);
+      const profile = {
+        uid: credential.user.uid,
+        name,
+        username,
+        bio: "New to ᏚᎪᎥᏦᎧ✨",
+        avatar: "",
+        createdAt: serverTimestamp()
+      };
+      try {
+        await runTransaction(firestore, async transaction => {
+          const existing = await transaction.get(usernameRef);
+          if (existing.exists()) throw new Error("USERNAME_TAKEN");
+          transaction.set(usernameRef, { uid: credential.user.uid });
+          transaction.set(doc(firestore, "users", credential.user.uid), profile);
+          transaction.set(doc(firestore, "users_private", credential.user.uid), {createdAt: serverTimestamp()});
+        });
+      } catch (profileError) {
+        await credential.user.delete();
+        if (profileError.message === "USERNAME_TAKEN") throw new Error("USERNAME_TAKEN");
+        throw profileError;
+      }
+      window.startRealMessageSession(credential.user.uid, {
+        id: credential.user.uid, name, username, bio: "New to ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ  ✨", avatar: "", friends: [], following: []
+      });
+    } else {
+      const credential = await signInWithEmailAndPassword(auth, usernameEmail(username), password);
+      const snap = await getDoc(doc(firestore, "users", credential.user.uid));
+      if (!snap.exists()) throw new Error("PROFILE_MISSING");
+      const data = snap.data();
+      const privateSnap = await getDoc(doc(firestore, "users_private", credential.user.uid));
+      const publicBio = data.bio || (privateSnap.exists() ? (privateSnap.data().bio || "") : "");
+      if (!data.bio && publicBio) await setDoc(doc(firestore, "users", credential.user.uid), {bio: publicBio}, {merge:true});
+      window.startRealMessageSession(credential.user.uid, {
+        id: credential.user.uid,
+        name: data.name || username,
+        username: data.username || username,
+        bio: publicBio,
+        avatar: "",
+        friends: [], following: []
+      });
+    }
+  } catch (error) {
+    if (error.message === "USERNAME_TAKEN") showError("That username is already taken.");
+    else if (error.message === "PROFILE_MISSING") showError("Your account profile is missing. Contact the site administrator.");
+    else showError(firebaseMessage(error));
+    console.error("Firebase authentication error:", error);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = document.getElementById("signupTab").classList.contains("active") ? "Create account" : "Log in";
+  }
+});
+
+// Keep the signed-in state in sync with Firebase authentication.
+onAuthStateChanged(auth, async user => {
+  if (!user) return;
+  const appVisible = !document.getElementById("app").classList.contains("hidden");
+  if (appVisible) return;
+  try {
+    const snap = await getDoc(doc(firestore, "users", user.uid));
+    if (!snap.exists()) return;
+    const data = snap.data();
+    window.startRealMessageSession(user.uid, {
+      id: user.uid, name: data.name || "ᏚᎪᎥᏦᎧ ᏔᎾᎡᏞᎠ user",
+      username: data.username || "user", bio: data.bio || "",
+      avatar: "", friends: [], following: []
+    });
+  } catch (error) {
+    console.error("Could not load Firebase profile:", error);
+  }
+});
+
+window.realMessageFirebaseSignOut = async () => {
+  activeLiveUser = null;
+  liveUnsubs.splice(0).forEach(fn => fn());
+  await signOut(auth);
+  location.reload();
+};
+</script>
+
+</body></html>
