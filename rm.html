@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b1020">
+<title>Real - Message</title>
+<style>
+:root {
+  --bg: #080b18;
+  --card: #10152a;
+  --panel: #10152a;
+  --panel2: #171d38;
+  --text: #f4f5ff;
+  --muted: #929bb9;
+  --line: #272e4d;
+  --accent: #4385ff;
+  --accent2: #9562ff;
+  --mine: #426fff;
+  --soft: #171d38;
+  --bubble: linear-gradient(135deg,#426fff,#8054ed);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI","Noto Sans Bengali",sans-serif;
+  color:var(--text);
+  background:var(--bg)
+}
+
+button,input{font:inherit}
+button{border:0;cursor:pointer}
+input{outline:0}
+
+.app{
+  height:100%;
+  max-width:1280px;
+  margin:auto;
+  display:flex;
+  overflow:hidden;
+  background:var(--card);
+  box-shadow:0 20px 70px #0008
+}
+
+.sidebar{
+  width:360px;
+  flex:none;
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  background:#10152a
+}
+
+.brand{
+  padding:22px 22px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+  font-weight:900;
+  box-shadow:0 8px 22px #4385ff40
+}
+
+.brand h1{font-size:22px;margin:0}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+
+ 
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#4385ff,#9562ff);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#fff;
+  flex:none
+}
+
+.profile b{display:block}
+
+.usernameTag{
+  font-family:ui-monospace,monospace;
+  letter-spacing:2px;
+  color:#a78bfa;
+  font-weight:800;
+  font-size:14px
+}
+
+.searchWrap{padding:0 16px 12px}
+
+.search{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#080b18;
+  color:var(--text)
+}
+
+.search:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px #4385ff20
+}
+
+.search::placeholder,
+.msgInput::placeholder,
+.field input::placeholder{
+  color:#7783a5
+}
+
+.sectionTitle{
+  padding:0 18px 8px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.8px
+}
+
+.list{overflow:auto;padding:0 10px;flex:1}
+
+.item{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  padding:12px 10px;
+  border-radius:15px;
+  margin:3px 0;
+  color:var(--text)
+}
+
+.item:hover,.item.active{
+  background:#202b4d
+}
+
+.item .info{min-width:0;flex:1}
+
+.item b{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.item .last{
+  font-size:12px;
+  color:var(--muted);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.item time{font-size:10px;color:var(--muted)}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#12b76a;
+  box-shadow:0 0 0 3px #12b76a18
+}
+
+.bottom{
+  padding:12px 16px;
+  border-top:1px solid var(--line)
+}
+
+.logout{
+  width:100%;
+  padding:12px;
+  border-radius:13px;
+  background:#351b32;
+  color:#ff8585;
+  font-weight:800
+}
+
+.main{
+  min-width:0;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(circle at 90% 10%,#25204b 0,transparent 30%),
+    linear-gradient(135deg,#080b18,#10152a)
+}
+
+.head{
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  background:#10152a;
+  border-bottom:1px solid var(--line)
+}
+
+.who{display:flex;align-items:center;gap:11px}
+.who b{display:block}
+.status{font-size:12px;color:var(--muted)}
+.online{color:#12b76a}
+
+.headBtns{display:flex;gap:8px}
+
+.iconBtn{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:#171d38;
+  color:#f4f5ff;
+  font-size:18px
+}
+
+.iconBtn:hover{
+  background:#272e4d;
+  color:#8bafff
+}
+
+.iconBtn:disabled{opacity:.45;cursor:not-allowed}
+
+.back{display:none}
+
+.messages{
+  flex:1;
+  overflow:auto;
+  padding:24px 22px;
+  display:flex;
+  flex-direction:column
+}
+
+.welcome{
+  margin:auto;
+  text-align:center;
+  color:var(--muted)
+}
+
+.welcomeIcon{font-size:45px;margin-bottom:8px}
+
+.row{display:flex;margin:5px 0}
+.row.mine{justify-content:flex-end}
+
+.bubble{
+  max-width:min(72%,560px);
+  padding:11px 14px;
+  border-radius:17px;
+  background:#171d38;
+  border:1px solid var(--line);
+  box-shadow:0 3px 12px #0003;
+  color:var(--text);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+
+.row.mine .bubble{
+  background:linear-gradient(135deg,#426fff,#8054ed);
+  color:#fff;
+  border:0;
+  border-bottom-right-radius:5px
+}
+
+.row:not(.mine) .bubble{border-bottom-left-radius:5px}
+
+.meta{font-size:10px;margin-top:5px;opacity:.7}
+
+.composer{
+  display:flex;
+  gap:9px;
+  padding:13px 16px;
+  background:#10152a;
+  border-top:1px solid var(--line)
+}
+
+.msgInput{
+  flex:1;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:13px 15px;
+  background:#080b18;
+  color:var(--text)
+}
+
+.msgInput:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px #4385ff20
+}
+
+.send{
+  width:50px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#4385ff,#9562ff);
+  color:#fff;
+  font-size:18px;
+  font-weight:900
+}
+
+.send:disabled{opacity:.45}
+
+.auth{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:
+    radial-gradient(circle at 20% 10%,#25204b,transparent 35%),
+    linear-gradient(135deg,#080b18,#10152a)
+}
+
+.authCard{
+  width:min(450px,100%);
+  padding:30px;
+  background:linear-gradient(145deg,#171d38,#10152a);
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:0 25px 80px #0008
+}
+
+.authLogo{
+  width:68px;
+  height:68px;
+  margin:auto;
+  border-radius:22px;
+  background:linear-gradient(135deg,#4385ff,#9562ff);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:29px;
+  font-weight:900
+}
+
+.authTitle{
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  margin:14px 0 4px;
+  color:var(--text)
+}
+
+.authSub{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:22px
+}
+
+.tabs{
+  display:flex;
+  padding:4px;
+  background:#080b18;
+  border:1px solid var(--line);
+  border-radius:13px;
+  margin-bottom:16px
+}
+
+.tab{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  background:transparent;
+  color:var(--muted);
+  font-weight:800
+}
+
+.tab.active{
+  background:linear-gradient(135deg,#426fff,#8054ed);
+  color:#fff;
+  box-shadow:0 2px 8px #0004
+}
+
+.field{margin:9px 0}
+
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  margin:0 0 6px;
+  color:var(--text)
+}
+
+.field input{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#080b18;
+  color:var(--text)
+}
+
+.field input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px #4385ff20
+}
+
+.primary{
+  width:100%;
+  margin-top:8px;
+  padding:14px;
+  border-radius:13px;
+  color:#fff;
+  font-weight:900;
+  background:linear-gradient(135deg,#4385ff,#9562ff)
+}
+
+.notice{
+  padding:11px 13px;
+  border-radius:13px;
+  background:#302817;
+  color:#fdbb65;
+  font-size:12px;
+  margin-bottom:13px
+}
+
+.error{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#351b32;
+  color:#ff8585;
+  font-size:12px
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#080b18e8;
+  display:grid;
+  place-items:center;
+  z-index:30;
+  padding:18px
+}
+
+.modalCard{
+  width:min(430px,100%);
+  background:#171d38;
+  border:1px solid var(--line);
+  color:var(--text);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 25px 80px #0008
+}
+
+.modalCard h3{margin:0 0 7px}
+
+.modalActions{
+  display:flex;
+  gap:8px;
+  margin-top:16px
+}
+
+.modalActions button{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  font-weight:800
+}
+
+.accept{
+  background:linear-gradient(135deg,#4385ff,#9562ff);
+  color:#fff
+}
+
+.decline{
+  background:#272e4d;
+  color:#f4f5ff
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(20px);
+  background:#171d38;
+  border:1px solid var(--line);
+  color:#fff;
+  padding:11px 15px;
+  border-radius:12px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:50
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0)
+}
+
+.call{
+  position:fixed;
+  inset:0;
+  background:#080b18f5;
+  z-index:40;
+  color:#fff;
+  display:grid;
+  place-items:center
+}
+
+.callBox{text-align:center;width:min(900px,94vw)}
+.callBox h2{margin:0 0 15px}
+
+.remote{
+  width:100%;
+  max-height:70vh;
+  background:#10152a;
+  border:1px solid var(--line);
+  border-radius:20px;
+  object-fit:cover
+}
+
+.local{
+  position:fixed;
+  right:25px;
+  bottom:100px;
+  width:150px;
+  border:2px solid #4385ff;
+  border-radius:16px;
+  background:#080b18
+}
+
+.end{
+  margin-top:15px;
+  padding:12px 20px;
+  border-radius:13px;
+  background:#d92d20;
+  color:#fff;
+  font-weight:900
+}
+
+@media(max-width:760px){
+  .sidebar{width:100%}
+  .main{display:none}
+  .app.chat-open .sidebar{display:none}
+  .app.chat-open .main{display:flex}
+  .back{display:block}
+  .head{height:68px}
+  .messages{padding:18px 12px}
+  .bubble{max-width:86%}
+  .authCard{padding:23px}
+}
+
+.authLogo {
+  width: 85px;
+  height: 85px;
+  margin: auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4385ff, #9562ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px #4385ff35;
+}
+
+.authLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+  display: block;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4385ff, #9562ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 22px #4385ff40;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.brand h1 {
+  font-size: 22px;
+  margin: 0;
+  color: #f4f5ff;
+}
+
+.brand small {
+  display: block;
+  color: #929bb9;
+  font-size: 11px;
+  margin-top: 3px;
+}
+/* Utility Main Container */
+.utilityView {
+  display: none;
+  background: #080b18;
+  color: #f4f5ff;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* People Page */
+.peoplePage {
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+  background: linear-gradient(145deg,#080b18,#10152a);
+  color: #f4f5ff;
+}
+
+.peoplePage h2 {
+  margin: 4px 0 14px;
+  color: #f4f5ff;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.peoplePage .status {
+  color: #929bb9;
+  font-size: 13px;
+}
+
+.peoplePage input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #272e4d;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  background: #10152a;
+  color: #f4f5ff;
+  font-size: 14px;
+  outline: none;
+}
+
+.peoplePage input::placeholder {
+  color: #929bb9;
+}
+
+.peoplePage input:focus {
+  border-color: #4385ff;
+  box-shadow: 0 0 0 3px #4385ff20;
+}
+
+#peopleResults {
+  color: #f4f5ff;
+}
+
+/* Browser Page */
+.browserPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg,#080b18,#10152a);
+  color: #f4f5ff;
+  padding: 15px;
+  gap: 12px;
+}
+
+.browserPage b {
+  color: #f4f5ff;
+  font-size: 21px;
+}
+
+.browserPage .status {
+  color: #929bb9;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.browserBar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.browserBar input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px;
+  border: 1px solid #272e4d;
+  border-radius: 12px;
+  background: #10152a;
+  color: #f4f5ff;
+  outline: none;
+}
+
+.browserBar input:focus {
+  border-color: #4385ff;
+}
+
+.browserBar input::placeholder {
+  color: #929bb9;
+}
+
+.browserBar .copy {
+  background: linear-gradient(135deg,#4385ff,#9562ff);
+  color: #fff;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.browserBar .copy:hover {
+  opacity: .85;
+}
+
+.browserFrame {
+  border: 1px solid #272e4d;
+  border-radius: 15px;
+  flex: 1;
+  width: 100%;
+  background: #10152a;
+}
+
+.browserPage > .status:last-child {
+  line-height: 1.6;
+}
+
+/* Profile Editor */
+.profileEditor {
+  padding: 22px;
+  overflow-y: auto;
+  height: 100%;
+  background: linear-gradient(145deg,#10152a,#080b18);
+  color: #f4f5ff;
+}
+
+.profileEditor h2 {
+  margin: 4px 0 6px;
+  color: #f4f5ff;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.profileEditor .muted {
+  color: #929bb9;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.profilePhotoWrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.profilePhoto {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#4385ff,#9562ff);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  flex: none;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #4385ff;
+  box-shadow: 0 5px 22px #4385ff35;
+}
+
+.profilePhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileEditor b {
+  color: #f4f5ff;
+}
+
+.profileEditor .status {
+  color: #929bb9;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.profileEditor .copy {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 9px 13px;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#4385ff,#9562ff);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  border: none;
+}
+
+.profileEditor .field {
+  margin: 15px 0;
+}
+
+.profileEditor .field label {
+  display: block;
+  color: #f4f5ff;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.profileEditor .field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #272e4d;
+  border-radius: 13px;
+  background: #080b18;
+  color: #f4f5ff;
+  outline: none;
+}
+
+.profileEditor .field input::placeholder {
+  color: #929bb9;
+}
+
+.profileEditor .field input:focus {
+  border-color: #4385ff;
+  box-shadow: 0 0 0 3px #4385ff20;
+}
+
+/* Save Button */
+.profileEditor .primary {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 13px;
+  color: #fff;
+  font-weight: 900;
+  background: linear-gradient(135deg,#4385ff,#9562ff);
+  box-shadow: 0 5px 18px #4385ff25;
+}
+
+/* Logout Button */
+.profileEditor .logout {
+  width: 100%;
+  padding: 13px;
+  border-radius: 13px;
+  background: #351b32;
+  color: #ff8585;
+  font-weight: 800;
+  border: 1px solid #54243f;
+}
+
+/* Android-style app navigation and feature pages */
+#app{position:relative;padding-bottom:0}
+.bottomNav{position:absolute;z-index:15;left:0;right:0;bottom:0;height:68px;display:flex;align-items:center;justify-content:space-around;gap:2px;padding:5px 6px calc(5px + env(safe-area-inset-bottom));background:#10152af2;border-top:1px solid var(--line);backdrop-filter:blur(16px)}
+.navBtn{flex:1;min-width:0;height:54px;border-radius:13px;background:transparent;color:#929bb9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:800}
+.navBtn .navIcon{font-size:19px;line-height:20px}.navBtn.active{color:#fff;background:#26345a}
+.main{padding-bottom:68px}.sidebar{padding-bottom:68px}
+.featureView{display:none;position:absolute;z-index:10;inset:0 0 68px 0;overflow:auto;background:linear-gradient(145deg,#080b18,#10152a)}
+.featureInner{max-width:760px;margin:0 auto;padding:22px 18px 30px}
+.featureInner h2{margin:4px 0 8px;font-size:24px}.mutedText{color:var(--muted);font-size:13px;line-height:1.6}
+.featureSearch{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;background:#080b18;color:var(--text);margin:14px 0}
+.featureCard{display:flex;align-items:center;gap:12px;padding:14px;margin:9px 0;border:1px solid var(--line);border-radius:15px;background:#141b32;color:var(--text)}
+.featureCard .grow{flex:1;min-width:0}.featureCard small{display:block;color:var(--muted);margin-top:4px}
+.actionBtn{padding:10px 14px;border-radius:11px;background:linear-gradient(135deg,#4385ff,#9562ff);color:white;font-weight:800}
+.profileStats{display:flex;gap:10px;margin:16px 0}.statBox{flex:1;text-align:center;padding:13px 8px;border-radius:14px;background:#171d38;border:1px solid var(--line)}.statBox strong{display:block;font-size:20px}.statBox span{font-size:11px;color:var(--muted)}
+.profileBio{white-space:pre-wrap;line-height:1.6;color:#dce3ff;margin:10px 0}.profileForm textarea{width:100%;min-height:85px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#080b18;color:var(--text);font:inherit;resize:vertical}
+.browserLinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}.browserLink{padding:17px 13px;border:1px solid var(--line);border-radius:15px;background:#141b32;color:var(--text);text-decoration:none;font-weight:800}.browserLink span{display:block;font-size:22px;margin-bottom:8px}.browserLink small{display:block;color:var(--muted);font-weight:500;margin-top:4px}
+#peerProfileButton{padding:0;background:none;color:inherit;text-align:left}
+@media(max-width:760px){.app{height:100dvh}.bottomNav{height:68px}.main{padding-bottom:78px}.app.chat-open .main{padding-bottom:78px}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.featureView{inset:0 0 68px 0}.sidebar{padding-bottom:78px}.bottomNav{padding-bottom:calc(5px + env(safe-area-inset-bottom))}}
+
+</style>
+</head>
+<body>
+<div id="auth" class="auth">
+  <div class="authCard">
+    <div class="authLogo">
+  <img src="./IMAGE/IMAGES/real-message.png" alt="Real Message App Logo">
+</div>
+
+<div class="authTitle">Real - Message</div>
+<div class="authSub">Create your anonymous profile .</div>
+    <div class="tabs"><button id="tabSign" class="tab active">Registration</button><button id="tabLogin" class="tab">Login</button></div>
+    <div id="signBox">
+      <div class="notice">Connect with people using a username and chat anonymous users with hidden chat interface.</div>
+      <div class="field"><label>নাম</label><input id="sName" maxlength="40" placeholder="আপনার নাম যেমন- RM Rony Ali"></div>
+      <div class="field"><label>Username</label><input id="sUsername" maxlength="20" autocomplete="username" placeholder="যেমন: @rmronyali "></div>
+      <div class="field"><label>PIN</label><input id="sPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 digit PIN"></div>
+      <button id="signBtn" class="primary">Create Account</button><div id="sErr" class="error" style="display:none"></div>
+    </div>
+    <div id="loginBox" style="display:none">
+      <div class="notice">আপনার Username এবং PIN দিয়ে Login করুন।</div>
+      <div class="field"><label>Username</label><input id="lUsername" maxlength="20" autocomplete="username" placeholder="আপনার username"></div>
+      <div class="field"><label>PIN</label><input id="lPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 digit PIN"></div>
+      <button id="loginBtn" class="primary">Login</button><div id="lErr" class="error" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app" style="display:none">
+  <aside class="sidebar">
+    <div class="brand">
+  <div class="logo">
+    <img src="./IMAGE/IMAGES/real-message.png" alt="Real Message Logo">
+  </div>
+
+  <div>
+    <h1>Real Message</h1>
+    <small>Developer - RM Rony Ali </small>
+  </div>
+</div>
+     
+    <div class="searchWrap"><input id="search" class="search" maxlength="21" placeholder="🔎 Search username"></div>
+    <div class="sectionTitle">Recent Chats</div>
+    <div id="recent" class="list"></div>
+    <div id="searchResults" class="list" style="flex:none"></div>
+    
+  </aside>
+
+  <main class="main">
+    <header class="head">
+      <div class="who"><button id="back" class="iconBtn back">‹</button><div id="headAvatar" class="avatar">RM</div><div><button id="peerProfileButton"><b id="headName">Select a chat</b></button><div id="headStatus" class="status">Search a username to start</div></div></div>
+      <div class="headBtns"><button id="audio" class="iconBtn" disabled title="Audio call">📞</button><button id="video" class="iconBtn" disabled title="Video call">📹</button></div>
+    </header>
+    <section id="messages" class="messages"><div class="welcome"><div class="welcomeIcon">💬</div><b>Real - Message</b><div>Search a username and start chatting.</div></div></section>
+    <footer class="composer"><input id="msg" class="msgInput" disabled placeholder="Write a message…"><button id="send" class="send" disabled>➤</button></footer>
+  </main>
+
+  <section id="peopleView" class="featureView"><div class="featureInner">
+    <h2>Find anonymous users</h2><div class="mutedText">Find anonymous users using Username and chat users with hidden chat interface.</div>
+    <input id="peopleSearch" class="featureSearch" maxlength="21" placeholder="Search username (e.g. rmronyali)">
+    <div id="peopleResults"></div>
+  </div></section>
+
+  <section id="browserView" class="featureView"><div class="featureInner">
+    <h2>Browser</h2><div class="mutedText">Our all in one anonymous social networking users, All in one place, everything you need.</div>
+    <div class="browserLinks" id="browserLinks"></div>
+  </div></section>
+
+  <section id="profileView" class="featureView"><div class="featureInner">
+    <h2>My Profile</h2><div id="ownProfileCard"></div>
+    <form id="profileForm" class="profileForm">
+      <div class="field"><label>Name</label><input id="profileName" maxlength="40" required></div>
+      <div class="field"><label>Bio</label><textarea id="profileBio" maxlength="300" placeholder="নিজের সম্পর্কে লিখুন..."></textarea></div>
+      <div class="field"><label>Portfolio URL</label><input id="profilePortfolio" type="url" maxlength="300" placeholder="https://example.com"></div>
+      <button class="primary" type="submit">Save Profile</button>
+    </form>
+    <button id="logout" class="logout" type="button" style="margin-top:14px">Log out</button>
+  </div></section>
+
+  <section id="peerProfileView" class="featureView"><div class="featureInner">
+    <button class="iconBtn" id="peerProfileBack">←</button><div id="peerProfileContent"></div>
+  </div></section>
+
+  <nav class="bottomNav" aria-label="Main navigation">
+    <button class="navBtn active" data-page="chat"><span class="navIcon">💬</span>Chat</button>
+    <button class="navBtn" data-page="people"><span class="navIcon">👥</span>People</button>
+    <button class="navBtn" data-page="saiko"><span class="navIcon">Ꮪ</span>Saiko</button>
+    <button class="navBtn" data-page="browser"><span class="navIcon">🌐</span>Browse</button>
+    <button class="navBtn" data-page="profile"><span class="navIcon">👤</span>Profile</button>
+  </nav>
+</div>
+
+<div id="incoming" class="modal" style="display:none">
+  <div class="modalCard"><h3 id="incomingTitle">Incoming call</h3><div id="incomingText" class="status">Someone is calling you.</div><div class="modalActions"><button id="decline" class="decline">Decline</button><button id="accept" class="accept">Accept</button></div></div>
+</div>
+
+<div id="call" class="call" style="display:none">
+  <div class="callBox"><h2 id="callTitle">Calling…</h2><video id="remote" class="remote" autoplay playsinline></video><video id="local" class="local" autoplay muted playsinline></video><button id="end" class="end">End Call</button></div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+<script>
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCwaFK8GkZB_tIwWilozTmpsVeBOLf60wM",
+  authDomain: "real-messege.firebaseapp.com",
+  databaseURL: "https://real-messege-default-rtdb.firebaseio.com",
+  projectId: "real-messege",
+  storageBucket: "real-messege.firebasestorage.app",
+  messagingSenderId: "189718505402",
+  appId: "1:189718505402:web:398574e1994718e0b55f83",
+  measurementId: "G-KMKMM63ZP0"
+};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+db.ref(".info/connected").on("value",s=>{ if(!s.val()) console.log("Firebase: offline"); });
+const $=id=>document.getElementById(id);
+const SESSION="rm_session_v2";
+let me=null,active=null,msgRef=null,presRef=null,recentRefs=[];
+let pc=null,localStream=null,currentCall=null,incomingCall=null;
+let viewedProfileUid=null;
+// Change these URLs whenever you are ready to add your preferred destinations.
+const BROWSER_LINKS = [
+  {name:"Course List",icon:"📚",url:"course.html",description:"Our Course List"},
+  {name:"Course Video",icon:"📽️",url:"video-course.html",description:"Free Video Courses"},
+  {name:"Events Photos",icon:"🏫",url:"event.html",description:"RM Demo Class – Prize giving seminar."},
+  {name:"All Tools",icon:"⚙️",url:"tools.html",description:"Cuber security All Tool's in one place"},
+  {name:"All Mentors",icon:"👥",url:"mentor.html",description:"Our mentors profile"},
+  {name:"Online Shop",icon:"🛒",url:"shop.html",description:"Trusted online Shop, buy anything."},
+  {name:"Our Family",icon:"🛰️",url:"Contact-list.html",description:"Official contact lists or connected with us."},
+  {name:"About Us",icon:"💁",url:"about.html",description:"History of our journey"},
+  {name:"Our Services",icon:"🧑‍🔧",url:"service.html",description:"If you need anything contact us else we provide."},
+  {name:"Complain Us",icon:"📬",url:"complain.html",description:"cyber security related any problem complain us."},
+  {name:"Donate us",icon:"🆘",url:"donation.html",description:"Help us – for Something Better"},
+  {name:"Job Sectors",icon:"🧑‍💻",url:"job.html",description:"Apply for job without any certificate if you have skill."}
+];
+
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function cid(a,b){return [a,b].sort().join("_");}
+function toast(t){const x=$("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2200);}
+function errText(e){let s=String(e?.message||e);return s.includes("PERMISSION_DENIED")?" Permission Denied —  Rules চেক করুন।":s;}
+async function pinHash(p){const h=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(p));return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+function makeUid(){
+  if(window.crypto?.randomUUID)return crypto.randomUUID();
+  return "u_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2)+"_"+Math.random().toString(36).slice(2);
+}
+function normalizeUsername(value){
+  return String(value||"").trim().replace(/^@+/, "").toLowerCase();
+}
+function validUsername(value){return /^[a-z0-9_]{3,20}$/.test(value);}
+async function reserveUsername(username,uid){
+  const ref=db.ref("usernames/"+username);
+  const tx=await ref.transaction(v=>v===null?uid:v);
+  if(!tx.committed||tx.snapshot.val()!==uid)throw Error("এই username ইতিমধ্যে ব্যবহার করা হয়েছে। অন্য username দিন।");
+  return username;
+}
+
+async function signup(){
+  $("sErr").style.display="none";
+  let name=$("sName").value.trim(),username=normalizeUsername($("sUsername").value),pin=$("sPin").value.trim();
+  if(name.length<2)return showErr("sErr","সঠিক নাম দিন।");
+  if(!validUsername(username))return showErr("sErr","Username 3–20 অক্ষরের হতে হবে; শুধু ইংরেজি ছোট হাতের অক্ষর, সংখ্যা ও underscore (_) ব্যবহার করুন।");
+  if(!/^\d{4,6}$/.test(pin))return showErr("sErr","PIN 4–6 সংখ্যার হতে হবে।");
+  $("signBtn").disabled=true;
+  let uid=null,reserved=false;
+  try{
+    uid=makeUid();
+    await reserveUsername(username,uid);reserved=true;
+    let ph=await pinHash(pin);
+    await db.ref("users/"+uid).set({uid,username,name,bio:"",portfolio:"",pinHash:ph,createdAt:firebase.database.ServerValue.TIMESTAMP});
+    me={uid,username,name,bio:"",portfolio:""};
+    localStorage.setItem(SESSION,uid);
+    await launch();
+    alert("Welcome to RM\n Developer - RM Rony Ali \nYour Username: @"+username+"\nSystem Hunter Taskforce");
+  }catch(e){
+    if(reserved)await db.ref("usernames/"+username).remove().catch(()=>{});
+    showErr("sErr",errText(e));
+  }finally{$("signBtn").disabled=false;}
+}
+async function login(){
+  $("lErr").style.display="none";
+  let username=normalizeUsername($("lUsername").value),pin=$("lPin").value.trim();
+  if(!validUsername(username))return showErr("lErr","সঠিক Username দিন।");
+  if(!/^\d{4,6}$/.test(pin))return showErr("lErr","সঠিক PIN দিন।");
+  $("loginBtn").disabled=true;
+  try{
+    let uid=(await db.ref("usernames/"+username).once("value")).val();
+    if(!uid)throw Error("এই Username পাওয়া যায়নি।");
+    let u=(await db.ref("users/"+uid).once("value")).val();
+    if(!u)throw Error("User profile পাওয়া যায়নি।");
+    if(await pinHash(pin)!==u.pinHash)throw Error("PIN ভুল।");
+    me={uid:u.uid,username:u.username,name:u.name,bio:u.bio||"",portfolio:u.portfolio||""};
+    localStorage.setItem(SESSION,uid);await launch();
+  }catch(e){showErr("lErr",errText(e));}finally{$("loginBtn").disabled=false;}
+}
+function showErr(id,t){$(id).textContent=t;$(id).style.display="block";}
+
+async function launch() {
+  $("auth").style.display = "none";
+  $("app").style.display = "flex";
+  renderBrowserLinks();
+  loadOwnProfile();
+  showPage("chat");
+
+  // Load recent chats after login
+  function loadRecent() {
+  if (!me || !me.uid) return;
+
+  const recentBox = $("recent");
+  const recentRef = db.ref("userChats/" + me.uid);
+
+  recentRef.off();
+
+  recentRef.on("value", snapshot => {
+    const chats = [];
+
+    snapshot.forEach(child => {
+      const chat = child.val();
+
+      if (chat && chat.uid) {
+        chats.push(chat);
+      }
+    });
+
+    chats.sort((a, b) =>
+      (b.updatedAt || 0) - (a.updatedAt || 0)
+    );
+
+    if (chats.length === 0) {
+      recentBox.innerHTML =
+        '<div class="status" style="padding:12px">No recent chats yet.</div>';
+      return;
+    }
+
+    recentBox.innerHTML = chats.map(u => `
+      <div class="item ${active && active.uid === u.uid ? "active" : ""}"
+           onclick="openChat('${esc(u.uid)}')">
+
+        <div class="avatar">
+          ${esc((u.name || "U")[0].toUpperCase())}
+        </div>
+
+        <div class="info">
+          <b>${esc(u.name || "Unknown User")}</b>
+          <div class="last">
+            @${esc(u.username || "")}
+          </div>
+        </div>
+      </div>
+    `).join("");
+
+  }, error => {
+    console.error("Recent chat load error:", error);
+    toast("Recent Chat load হয়নি: " + errText(error));
+  });
+}
+
+  // Set online presence
+  presRef = db.ref("presence/" + me.uid);
+
+  await presRef.set({
+    online: true,
+    lastSeen: firebase.database.ServerValue.TIMESTAMP
+  });
+
+  presRef.onDisconnect().set({
+    online: false,
+    lastSeen: firebase.database.ServerValue.TIMESTAMP
+  });
+
+  watchIncomingCalls();
+}
+function copyUsername(){navigator.clipboard?.writeText("@"+me.username).then(()=>toast("Username copied")).catch(()=>toast("@"+me.username));}
+async function logout(){
+  if(!me)return;
+  try{
+    if(presRef)await presRef.set({online:false,lastSeen:firebase.database.ServerValue.TIMESTAMP});
+  }catch(e){console.warn("Presence update on logout failed:",e);}
+  localStorage.removeItem(SESSION);
+  me=null;
+  location.reload();
+}
+
+let chatSearchRequest = 0;
+let chatSearchTimer = null;
+
+async function searchUser(){
+  const username=normalizeUsername($("search").value);
+  const box=$("searchResults");
+  const request=++chatSearchRequest;
+  box.innerHTML="";
+  if(!username)return;
+  if(username.length<3){
+    box.innerHTML='<div class="status" style="padding:10px">কমপক্ষে ৩ অক্ষরের username লিখুন।</div>';
+    return;
+  }
+  if(!validUsername(username)){
+    box.innerHTML='<div class="status" style="padding:10px">সঠিক username লিখুন (৩–২০ অক্ষর; a-z, 0-9, underscore)।</div>';
+    return;
+  }
+  box.innerHTML='<div class="status" style="padding:10px">Searching…</div>';
+  try{
+    const uid=(await db.ref("usernames/"+username).once("value")).val();
+    if(request!==chatSearchRequest)return;
+    if(!uid){
+      box.innerHTML='<div class="status" style="padding:10px">User পাওয়া যায়নি</div>';
+      return;
+    }
+    if(uid===me.uid){
+      box.innerHTML='<div class="status" style="padding:10px">এটি আপনার নিজের account</div>';
+      return;
+    }
+    const u=(await db.ref("users/"+uid).once("value")).val();
+    if(request!==chatSearchRequest)return;
+    if(!u){
+      box.innerHTML='<div class="status" style="padding:10px">User profile পাওয়া যায়নি</div>';
+      return;
+    }
+    box.innerHTML='<div class="item"><div class="avatar">'+esc((u.name||"U")[0])+'</div><div class="info"><b>'+esc(u.name||"Unknown User")+'</b><div class="last">@'+esc(u.username||username)+'</div></div><button class="actionBtn" id="chatSearchOpen">Chat</button></div>';
+    $("chatSearchOpen").onclick=()=>openChat(uid);
+  }catch(e){
+    if(request===chatSearchRequest)box.innerHTML='<div class="error">'+esc(errText(e))+'</div>';
+  }
+}
+async function openChat(uid) {
+  try {
+    const snapshot = await db.ref("users/" + uid).once("value");
+    const u = snapshot.val();
+
+    if (!u) {
+      toast("User পাওয়া যায়নি।");
+      return;
+    }
+
+    if (u.uid === me.uid) return;
+
+    active = u;
+
+    $("headName").textContent = u.name || "Unknown User";
+    $("peerProfileButton").title = "View profile";
+    $("headAvatar").textContent =
+      (u.name || "U")[0].toUpperCase();
+
+    $("msg").disabled = false;
+    $("send").disabled = false;
+    $("audio").disabled = false;
+    $("video").disabled = false;
+
+    $("app").classList.add("chat-open");
+
+    // Save this user permanently in current user's recent list
+    await addRecent(u);
+
+    watchStatus();
+    listenMessages();
+
+    loadRecent();
+
+  } catch (error) {
+    console.error(error);
+    toast("Chat open হয়নি: " + errText(error));
+  }
+}
+
+function showPage(page){
+  document.querySelectorAll('.featureView').forEach(v=>v.style.display='none');
+  document.querySelectorAll('.navBtn').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+  $('app').classList.remove('chat-open');
+  if(page==='people')$('peopleView').style.display='block';
+  else if(page==='browser')$('browserView').style.display='block';
+  else if(page==='profile'){$('profileView').style.display='block';loadOwnProfile();}
+  else if(page==='chat'){$('peopleView').style.display='none';$('browserView').style.display='none';$('profileView').style.display='none';$('peerProfileView').style.display='none';}
+}
+function renderBrowserLinks(){
+  $('browserLinks').innerHTML=BROWSER_LINKS.map(x=>`<a class="browserLink" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer"><span>${esc(x.icon)}</span>${esc(x.name)}<small>${esc(x.description||'Open website')}</small></a>`).join('');
+}
+async function searchPeople(){
+  const username=normalizeUsername($('peopleSearch').value),box=$('peopleResults');
+  box.innerHTML=''; if(!username)return;
+  if(!validUsername(username)){box.innerHTML='<div class="mutedText">Username ৩–২০ অক্ষরের হতে হবে (a-z, 0-9, underscore)।</div>';return;}
+  try{
+    const uid=(await db.ref('usernames/'+username).once('value')).val();
+    if(!uid){box.innerHTML='<div class="mutedText">কোনো user পাওয়া যায়নি।</div>';return;}
+    if(uid===me.uid){box.innerHTML='<div class="mutedText">এটি আপনার নিজের account।</div>';return;}
+    const u=(await db.ref('users/'+uid).once('value')).val();
+    if(!u){box.innerHTML='<div class="mutedText">User profile পাওয়া যায়নি।</div>';return;}
+    box.innerHTML=`<div class="featureCard"><div class="avatar">${esc((u.name||'U')[0].toUpperCase())}</div><div class="grow"><b>${esc(u.name||'Unknown User')}</b><small>@${esc(u.username||'')}</small></div><button class="actionBtn" id="peopleChatBtn">Chat</button><button class="actionBtn" id="peopleProfileBtn">Profile</button></div>`;
+    $('peopleChatBtn').onclick=()=>{showPage('chat');openChat(uid);};
+    $('peopleProfileBtn').onclick=()=>showPeerProfile(uid);
+  }catch(e){box.innerHTML=`<div class="error">${esc(errText(e))}</div>`;}
+}
+async function loadOwnProfile(){
+  if(!me)return;
+  try{const u=(await db.ref('users/'+me.uid).once('value')).val()||me;me={...me,...u};
+    $('profileName').value=me.name||'';$('profileBio').value=me.bio||'';$('profilePortfolio').value=me.portfolio||'';
+    const [followers,following]=await Promise.all([db.ref('userFollows/'+me.uid).once('value'),db.ref('userFollowing/'+me.uid).once('value')]);
+    $('ownProfileCard').innerHTML=`<div class="featureCard"><div class="avatar">${esc((me.name||'U')[0].toUpperCase())}</div><div class="grow"><b>${esc(me.name||'')}</b><small>@${esc(me.username||'')}</small></div></div><div class="profileStats"><div class="statBox"><strong>${followers.numChildren()}</strong><span>Followers</span></div><div class="statBox"><strong>${following.numChildren()}</strong><span>Following</span></div></div>`;
+  }catch(e){toast('Profile load হয়নি: '+errText(e));}
+}
+async function saveOwnProfile(e){
+  e.preventDefault();const name=$('profileName').value.trim(),bio=$('profileBio').value.trim(),portfolio=$('profilePortfolio').value.trim();
+  if(name.length<2){toast('সঠিক নাম লিখুন।');return;}
+  if(portfolio&&!/^https?:\/\//i.test(portfolio)){toast('Portfolio URL https:// দিয়ে শুরু করুন।');return;}
+  try{await db.ref('users/'+me.uid).update({name,bio,portfolio});me={...me,name,bio,portfolio};toast('Profile updated successfully');loadOwnProfile();}
+  catch(err){toast('Profile save হয়নি: '+errText(err));}
+}
+async function showPeerProfile(uid){
+  if(!uid||uid===me.uid){showPage('profile');return;}
+  try{const u=(await db.ref('users/'+uid).once('value')).val();if(!u){toast('User পাওয়া যায়নি');return;}
+    viewedProfileUid=uid;
+    const [followers,following,isFollowing]=await Promise.all([db.ref('userFollows/'+uid).once('value'),db.ref('userFollowing/'+uid).once('value'),db.ref('userFollowing/'+me.uid+'/'+uid).once('value')]);
+    $('peerProfileContent').innerHTML=`<div class="featureCard"><div class="avatar">${esc((u.name||'U')[0].toUpperCase())}</div><div class="grow"><b>${esc(u.name||'Unknown User')}</b><small>@${esc(u.username||'')}</small></div></div><div class="profileStats"><div class="statBox"><strong>${followers.numChildren()}</strong><span>Followers</span></div><div class="statBox"><strong>${following.numChildren()}</strong><span>Following</span></div></div><h3>Bio</h3><div class="profileBio">${esc(u.bio||'No bio added yet.')}</div>${u.portfolio?`<p><a href="${esc(u.portfolio)}" target="_blank" rel="noopener noreferrer">View Portfolio ↗</a></p>`:''}<div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:18px"><button class="actionBtn" id="peerFollowBtn">${isFollowing.exists()?'Following':'Follow'}</button><button class="actionBtn" id="peerChatBtn">Message</button></div>`;
+    $('peerProfileView').style.display='block';document.querySelectorAll('.featureView').forEach(v=>{if(v.id!=='peerProfileView')v.style.display='none';});
+    $('peerFollowBtn').onclick=()=>toggleFollow(uid,isFollowing.exists());
+    $('peerChatBtn').onclick=()=>{showPage('chat');openChat(uid);};
+  }catch(e){toast('Profile open হয়নি: '+errText(e));}
+}
+async function toggleFollow(uid,following){
+  try{const updates={};updates['userFollowing/'+me.uid+'/'+uid]=following?null:true;updates['userFollows/'+uid+'/'+me.uid]=following?null:true;await db.ref().update(updates);toast(following?'Unfollowed':'Following');showPeerProfile(uid);}
+  catch(e){toast('Follow update হয়নি: '+errText(e));}
+}
+
+function watchStatus(){db.ref("presence/"+active.uid).on("value",s=>{let p=s.val()||{};$("headStatus").innerHTML=p.online?'<span class="online">● Online</span>':'● Offline';});}
+
+function listenMessages(){
+ if(msgRef)msgRef.off();
+ const ref=db.ref("messages/"+cid(me.uid,active.uid)).limitToLast(200);
+ msgRef=ref;
+ const cache={};
+ $("messages").innerHTML='<div class="welcome"><div class="welcomeIcon">⏳</div><div>Loading real messages…</div></div>';
+ const render=()=>{
+  const a=Object.values(cache).sort((x,y)=>{
+   const ax=typeof x.createdAt==="number"?x.createdAt:0;
+   const ay=typeof y.createdAt==="number"?y.createdAt:0;
+   return ax-ay || String(x.key).localeCompare(String(y.key));
+  });
+  $("messages").innerHTML=a.length?a.map(m=>'<div class="row '+(m.senderId===me.uid?"mine":"")+'"><div class="bubble">'+esc(m.text)+'<div class="meta">'+new Date(typeof m.createdAt==="number"?m.createdAt:Date.now()).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+'</div></div></div>').join(""):'<div class="welcome"><div class="welcomeIcon">👋</div><b>Say hello!</b><div>এই chat-এ প্রথম message পাঠান।</div></div>';
+  $("messages").scrollTop=$("messages").scrollHeight;
+ };
+ ref.on("child_added",snap=>{cache[snap.key]={key:snap.key,...(snap.val()||{})};render();},err=>toast("Chat load হয়নি: "+errText(err)));
+ ref.on("child_changed",snap=>{cache[snap.key]={key:snap.key,...(snap.val()||{})};render();});
+ ref.on("child_removed",snap=>{delete cache[snap.key];render();});
+}
+async function sendMessage(){
+ if(!me||!active)return;
+ const input=$("msg"),text=input.value.trim();
+ if(!text)return;
+ input.value="";
+ $("send").disabled=true;
+ try{
+  const ref=db.ref("messages/"+cid(me.uid,active.uid)).push();
+  await ref.set({
+   senderId:me.uid,
+   receiverId:active.uid,
+   text:text,
+   createdAt:firebase.database.ServerValue.TIMESTAMP
+  });
+  // Recent-chat index is secondary; a failure here must NOT block messaging.
+  db.ref("userChats/"+me.uid+"/"+active.uid).update({uid:active.uid,name:active.name,username:active.username,lastMessage:text,updatedAt:firebase.database.ServerValue.TIMESTAMP}).catch(()=>{});
+  db.ref("userChats/"+active.uid+"/"+me.uid).update({uid:me.uid,name:me.name,username:me.username,lastMessage:text,updatedAt:firebase.database.ServerValue.TIMESTAMP}).catch(()=>{});
+ }catch(e){
+  input.value=text;
+  toast("Message পাঠানো যায়নি: "+errText(e));
+ }finally{
+  $("send").disabled=false;
+  input.focus();
+ }
+}
+async function addRecent(u) {
+  if (!me || !u || !u.uid || u.uid === me.uid) return;
+
+  const recentData = {
+    uid: u.uid,
+    name: u.name || "Unknown User",
+    username: u.username || "",
+    updatedAt: firebase.database.ServerValue.TIMESTAMP
+  };
+
+  try {
+    await db.ref("userChats/" + me.uid + "/" + u.uid).update(recentData);
+  } catch (error) {
+    console.error("Recent chat save error:", error);
+    toast("Recent Chat সংরক্ষণ হয়নি: " + errText(error));
+  }
+}
+
+async function startCall(video){
+ if(!active)return;
+ try{localStream=await navigator.mediaDevices.getUserMedia({audio:true,video});pc=new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"}]});
+  localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));$("local").srcObject=localStream;$("remote").srcObject=null;
+  $("callTitle").textContent="Calling "+active.name+"…";$("call").style.display="grid";
+  const id=me.uid+"_"+active.uid+"_"+Date.now(),ref=db.ref("calls/"+id);currentCall={id,ref,role:"caller",video,peer:active};
+  pc.onicecandidate=e=>e.candidate&&ref.child("offerCandidates").push(e.candidate.toJSON());pc.ontrack=e=>$("remote").srcObject=e.streams[0];
+  let offer=await pc.createOffer();await pc.setLocalDescription(offer);await ref.set({caller:me.uid,callee:active.uid,video,offer:{type:offer.type,sdp:offer.sdp},createdAt:firebase.database.ServerValue.TIMESTAMP});
+  ref.child("answerCandidates").on("child_added",s=>pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{}));
+  ref.on("value",async s=>{let d=s.val();if(d?.answer&&!pc.currentRemoteDescription)await pc.setRemoteDescription(new RTCSessionDescription(d.answer));});
+ }catch(e){toast("Call চালু হয়নি: "+errText(e));endCall();}
+}
+function watchIncomingCalls(){
+ db.ref("calls").on("child_added",async s=>{let d=s.val();if(!d||d.callee!==me.uid||d.answer)return;
+  incomingCall={id:s.key,data:d};let u=(await db.ref("users/"+d.caller).once("value")).val();
+  $("incomingTitle").textContent=(d.video?"📹 ":"📞 ")+(u?.name||"Someone");$("incomingText").textContent=(d.video?"Video":"Audio")+" call incoming…";$("incoming").style.display="grid";
+ });
+}
+async function acceptCall(){
+ if(!incomingCall)return;let c=incomingCall,d=c.data; $("incoming").style.display="none";
+ try{localStream=await navigator.mediaDevices.getUserMedia({audio:true,video:!!d.video});pc=new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"}]});
+  localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));$("local").srcObject=localStream;$("remote").srcObject=null;$("callTitle").textContent="Connected";$("call").style.display="grid";
+  const ref=db.ref("calls/"+c.id);currentCall={id:c.id,ref,role:"callee",video:d.video};
+  pc.ontrack=e=>$("remote").srcObject=e.streams[0];pc.onicecandidate=e=>e.candidate&&ref.child("answerCandidates").push(e.candidate.toJSON());
+  await pc.setRemoteDescription(new RTCSessionDescription(d.offer));let ans=await pc.createAnswer();await pc.setLocalDescription(ans);await ref.update({answer:{type:ans.type,sdp:ans.sdp}});
+  ref.child("offerCandidates").on("child_added",s=>pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{}));
+ }catch(e){toast("Call accept হয়নি: "+errText(e));endCall();}
+ incomingCall=null;
+}
+function declineCall(){if(incomingCall){db.ref("calls/"+incomingCall.id).remove().catch(()=>{});incomingCall=null}$("incoming").style.display="none";}
+function endCall(){if(currentCall?.ref)currentCall.ref.remove().catch(()=>{});if(pc){pc.close();pc=null}if(localStream){localStream.getTracks().forEach(t=>t.stop());localStream=null}$("call").style.display="none";$("local").srcObject=null;$("remote").srcObject=null;currentCall=null;}
+
+document.querySelectorAll('.navBtn').forEach(btn=>btn.addEventListener('click',()=>{const page=btn.dataset.page;if(page==='saiko'){location.href='index.html';return;}showPage(page);}));
+$('peopleSearch').addEventListener('input',searchPeople);
+$('profileForm').addEventListener('submit',saveOwnProfile);
+$('peerProfileButton').addEventListener('click',()=>{if(active)showPeerProfile(active.uid);});
+$('peerProfileBack').addEventListener('click',()=>showPage('chat'));
+
+$("tabSign").onclick=()=>{$("tabSign").classList.add("active");$("tabLogin").classList.remove("active");$("signBox").style.display="block";$("loginBox").style.display="none"};
+$("tabLogin").onclick=()=>{$("tabLogin").classList.add("active");$("tabSign").classList.remove("active");$("loginBox").style.display="block";$("signBox").style.display="none"};
+$("signBtn").onclick=signup;
+$("loginBtn").onclick=login;
+if($("logout"))$("logout").onclick=logout;
+$("search").addEventListener("input",()=>{
+  clearTimeout(chatSearchTimer);
+  chatSearchTimer=setTimeout(searchUser,250);
+});
+$("search").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){e.preventDefault();clearTimeout(chatSearchTimer);searchUser();}
+});
+$("send").onclick=sendMessage;$("msg").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMessage()}};$("back").onclick=()=>$("app").classList.remove("chat-open");$("audio").onclick=()=>startCall(false);$("video").onclick=()=>startCall(true);$("accept").onclick=acceptCall;$("decline").onclick=declineCall;$("end").onclick=endCall;
+
+(async()=>{
+  const uid=localStorage.getItem(SESSION);
+  if(!uid)return;
+  try{
+    const snapshot=await db.ref("users/"+uid).once("value");
+    const u=snapshot.val();
+    if(!u){
+      localStorage.removeItem(SESSION);
+      return;
+    }
+    me={uid:u.uid||uid,username:u.username,name:u.name,bio:u.bio||"",portfolio:u.portfolio||""};
+    await launch();
+  }catch(e){
+    console.warn("Session restore failed; saved session retained:",e);
+    toast("Session restore হয়নি। Internet connection check করে page reload করুন।");
+  }
+})();
+
+
+</script>
+</body>
+</html>
