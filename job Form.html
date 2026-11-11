@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07110b">
+<title>TEAM SHT | Job Application</title>
+<!-- Tailwind (CDN) -->
+   
+  
+<style>
+:root{--bg:#07110b;--yellow:#ffe600;--green:#8cff9a;--muted:#bdc8be;--line:rgba(255,230,0,.23);--panel:rgba(3,12,7,.86)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
+#network{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:-1;pointer-events:none}
+header{padding:17px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(0,0,0,.7);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:11px}.logo{height:42px;width:42px;border:1px solid var(--yellow);border-radius:12px;display:grid;place-items:center;color:var(--yellow);font-weight:900}.brand h2{font-size:19px;color:var(--yellow);letter-spacing:1px}.brand p{font-size:10px;color:var(--green);margin-top:4px;letter-spacing:1px}
+.private{font-size:10px;color:var(--green);border:1px solid rgba(140,255,154,.3);padding:8px 10px;border-radius:30px}
+main{width:min(980px,92%);margin:38px auto 65px}.intro{text-align:center;max-width:740px;margin:0 auto 27px}.tag{display:inline-block;color:var(--green);border:1px solid rgba(140,255,154,.25);border-radius:30px;padding:7px 12px;font-size:10px;letter-spacing:1.5px;margin-bottom:14px}.intro h2{font-size:clamp(30px,5vw,48px);color:var(--yellow);line-height:1.12}.intro p{color:#c4cec5;font-size:14px;line-height:1.8;margin-top:12px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:11px;background:rgba(255,230,0,.055);color:#dce2dc;font-size:12px;line-height:1.7;margin-bottom:18px}.notice strong{color:var(--yellow)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);box-shadow:0 15px 40px rgba(0,0,0,.2)}.panel-head{padding:19px 22px;background:rgba(255,230,0,.055);border-bottom:1px solid var(--line)}.panel-head h3{font-size:18px;color:var(--yellow)}.panel-head p{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}.body{padding:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{margin-bottom:16px}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:bold;color:#e9eee9;margin-bottom:8px}input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.17);border-radius:9px;background:rgba(0,0,0,.35);padding:12px;color:#fff;font:inherit;font-size:13px;outline:none}select option{background:#101810;color:white}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}textarea{resize:vertical;min-height:95px}.help{font-size:10px;color:#9eaaa0;line-height:1.6;margin-top:6px}
+.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:15px;background:rgba(255,255,255,.035);cursor:pointer}.choice.selected{border-color:var(--yellow);background:rgba(255,230,0,.09)}.choice input{width:auto;margin-right:7px;accent-color:var(--yellow)}.choice strong{font-size:13px}.choice p{font-size:11px;color:var(--muted);line-height:1.5;margin:7px 0 0 23px}
+.section-title{font-size:14px;color:var(--yellow);margin:20px 0 13px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.hidden{display:none!important}.online-note,.offline-note{font-size:12px;line-height:1.7;padding:13px;border-radius:9px;margin:5px 0 16px}.online-note{background:rgba(140,255,154,.06);border:1px solid rgba(140,255,154,.2);color:#d8e9db}.offline-note{background:rgba(255,230,0,.06);border:1px solid var(--line);color:#e4e3d3}
+.terms{border:1px solid rgba(255,230,0,.25);border-radius:12px;padding:16px;background:rgba(0,0,0,.28);margin:14px 0}.terms h4{color:var(--yellow);font-size:14px;margin-bottom:10px}.terms ol{padding-left:20px;color:#d5ddd6;font-size:12px;line-height:1.8}.terms li{padding-left:3px;margin:5px 0}.terms .caution{font-size:11px;color:#f0d7a1;line-height:1.65;margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px}
+.checkline{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.6;color:#dce4dc;margin:13px 0}.checkline input{width:auto;margin-top:3px;accent-color:var(--yellow);flex-shrink:0}
+.btn{width:100%;border:0;border-radius:9px;padding:14px;background:var(--yellow);color:#101408;font-size:13px;font-weight:900;cursor:pointer;margin-top:8px}.btn:hover{filter:brightness(1.06)}.result{display:none;margin-top:14px;padding:13px;border:1px solid rgba(140,255,154,.3);border-radius:9px;color:var(--green);font-size:12px;line-height:1.7;white-space:pre-wrap}.smallprint{text-align:center;color:#929f94;font-size:10px;line-height:1.7;margin-top:16px}
+footer{text-align:center;padding:20px;color:#8d998f;font-size:11px;border-top:1px solid var(--line);background:rgba(0,0,0,.45)}footer b{color:var(--yellow)}
+@media(max-width:650px){main{margin-top:27px}.grid{grid-template-columns:1fr;gap:0}.field.full{grid-column:auto}.body{padding:17px}.choice-row{grid-template-columns:1fr}.private{font-size:9px}.brand h2{font-size:16px}}
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+</style>
+</head>
+<body>
+<canvas id="network"></canvas><div class="overlay"></div>
+<header><!-- Logo -->
+       
+   <a href="saiko.html" class="logo-link">
+    <img src="./IMAGE/IMAGES/logo.png" alt="SAIKO Logo" class="logo-image">
+        <div class="brand"><div><h2>TEAM SHT</h2></div></div>
+      </a> </header>
+<main>
+<section class="intro"><div class="tag">CAREER APPLICATION PORTAL</div><h2>Apply Your Skills.<br>Build Your Future.</h2><p>TEAM SHT welcomes skilled and motivated applicants. Apply for online opportunities using your skills—certificates are not mandatory.</p></section>
+<div class="notice"><strong>Application information:</strong> All application details are collected as text. After review and verification, TEAM SHT will contact applicants by email. Submitting this form does not guarantee selection or employment.</div>
+<section class="panel">
+<div class="panel-head"><h3>Job Application Form</h3><p>Complete the information below accurately.</p></div>
+<div class="body">
+<form id="jobForm" method="POST" action="https://formsubmit.co/rmronyali@gmail.com">
+<h4 class="section-title">01 / Personal information</h4>
+<div class="grid">
+<div class="field"><label for="fullName">Full name *</label><input id="fullName" required maxlength="100" placeholder="Your full name" name="applicant_full_name"></div>
+<div class="field"><label for="email">Email address *</label><input id="email" type="email" required maxlength="120" placeholder="you@example.com" name="email"></div>
+<div class="field"><label for="phone">Mobile number *</label><input id="phone" type="tel" required maxlength="25" placeholder="01XXXXXXXXX" name="mobile_number"></div>
+<div class="field"><label for="location">Current location *</label><input id="location" required maxlength="120" placeholder="District, Bangladesh" name="current_location"></div>
+</div>
+<h4 class="section-title">02 / Position and work </h4>
+<div class="field"><label for="position">Position applying for *</label><input id="position" required maxlength="120" placeholder="Enter the position" name="position_applying_for"></div>
+<div class="field"><label>Choose application type *</label><div class="choice-row">
+<label class="choice selected" id="onlineChoice"><span><input type="radio" name="workType" value="Online" checked> <strong>Online Position</strong></span><p>Apply based on your skills. Certificates are not required.</p></label>
+<label class="choice" id="offlineChoice"><span><input type="radio" name="workType" value="Offline"> <strong>Offline Position</strong></span><p>Requires review and a separate offline agreement.</p></label>
+</div></div>
+<div id="onlineSection" class="online-note">✓ <strong>Online application:</strong> You can apply with your skills, practical experience, and portfolio. No certificate is required. Share examples of your work if available.</div>
+<div class="field"><label for="skills">Your skills and abilities *</label><textarea id="skills" required maxlength="2000" placeholder="Describe your skills, tools you can use, and what work you can do..." name="skills_and_abilities"></textarea><div class="help">Certificates are optional for online positions. Explain your practical skills clearly.</div></div>
+<div class="field"><label for="experience">Experience / portfolio / previous work (optional)</label><textarea id="experience" maxlength="2000" placeholder="Describe relevant experience or paste portfolio links. If you are a beginner, write that here." name="experience_portfolio_previous_work"></textarea></div>
+<div class="field"><label for="availability">Availability / preferred schedule *</label><input id="availability" required maxlength="160" placeholder="e.g. Part-time, full-time, hours per day" name="availability_preferred_schedule"></div>
+
+<div id="offlineSection" class="hidden">
+<h4 class="section-title">03 / Offline position agreement</h4>
+<div class="offline-note"><strong>Offline positions only:</strong> The following proposed conditions apply only to offline job sectors. They do not apply to online positions.</div>
+<div class="terms">
+<h4>Offline Position — Proposed Agreement Conditions</h4>
+<ol>
+<li>To take an offline position, the applicant is asked to deposit <strong>৳20,000 (twenty thousand taka)</strong>.</li>
+<li>If the worker wishes to leave or resign, at least <strong>three months’ prior official notice</strong> is required.</li>
+<li>The worker must also arrange a suitable replacement person and complete the handover, subject to TEAM SHT approval.</li>
+<li>If the worker cannot fulfil both the three-month notice requirement and the approved replacement/handover requirement, the proposed agreement states that <strong>৳20,000</strong> may be claimed as compensation for loss.</li>
+<li>If both conditions are fulfilled, the <strong>৳20,000 deposit is to be returned</strong>, subject to the written agreement and applicable law.</li>
+</ol>
+
+</div>
+<label class="checkline"><input type="checkbox" id="offlineRead" name="offline_conditions_read" value="Yes, read and understood"> I confirm that I have read the proposed offline conditions and understand that the full written agreement must be provided and reviewed separately before accepting an offline position.</label>
+<label class="checkline"><input type="checkbox" id="offlineConsent" name="offline_position_interest_and_consent" value="Yes, interested and agree to discuss"> I want to be considered for an offline position and agree to discuss these conditions before any final agreement or payment.</label>
+</div>
+
+<h4 class="section-title" id="finalTitle">03 / Confirmation</h4>
+<div class="field"><label class="checkline"><input type="checkbox" id="accuracy" required name="information_accuracy_confirmation"> I confirm that the information I provided is accurate and understand that TEAM SHT will review and verify my application before contacting me by email.</label></div>
+<input type="hidden" name="_subject" value="New TEAM SHT Job Application">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<button class="btn" type="submit">SUBMIT APPLICATION</button>
+<div class="result" id="result" role="status"></div>
+<p class="smallprint">Privacy note: Only provide information needed for your application. Do not submit passwords, PINs, OTPs, payment credentials, or sensitive identity documents in this form.</p>
+</form>
+</div></section>
+</main>
+<footer><b>TEAM SHT</b> — Private Community<br>Applications are subject to review, verification, and available positions.</footer>
+<script>
+const radios=[...document.querySelectorAll('input[name="workType"]')],offline=document.getElementById('offlineSection'),online=document.getElementById('onlineSection'),finalTitle=document.getElementById('finalTitle');
+function setType(){const isOffline=document.querySelector('input[name="workType"]:checked').value==='Offline';offline.classList.toggle('hidden',!isOffline);online.classList.toggle('hidden',isOffline);document.getElementById('onlineChoice').classList.toggle('selected',!isOffline);document.getElementById('offlineChoice').classList.toggle('selected',isOffline);document.getElementById('offlineRead').required=isOffline;document.getElementById('offlineConsent').required=isOffline;finalTitle.textContent=isOffline?'04 / Confirmation':'03 / Confirmation';}
+radios.forEach(r=>r.addEventListener('change',setType));setType();
+const fullName=document.getElementById('fullName'),email=document.getElementById('email'),phone=document.getElementById('phone'),locationField=document.getElementById('location'),position=document.getElementById('position'),skills=document.getElementById('skills'),experience=document.getElementById('experience'),availability=document.getElementById('availability');
+const canvas=document.getElementById('network'),ctx=canvas.getContext('2d');let particles=[];function resize(){const d=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*d;canvas.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0);}function init(){particles=Array.from({length:Math.min(75,Math.floor(innerWidth/14))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45,r:Math.random()*1.7+.7}));}function animate(){ctx.clearRect(0,0,innerWidth,innerHeight);particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='#ffe600';ctx.fill();for(let j=i+1;j<particles.length;j++){const q=particles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<125){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(255,230,0,${.13*(1-d/125)})`;ctx.stroke();}}});requestAnimationFrame(animate);}resize();init();addEventListener('resize',()=>{resize();init();});animate();
+</script>
+</body></html>

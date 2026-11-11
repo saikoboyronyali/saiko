@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b10">
+<title>Cyber Security Seminar Application | TEAM SHT</title>
+<style>
+:root{--yellow:#ffe600;--gold:#ffb800;--green:#8cff9a;--ink:#090b10;--panel:rgba(18,21,28,.9);--line:rgba(255,230,0,.38)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:"Hind Siliguri",Arial,sans-serif;background:radial-gradient(ellipse at 15% 5%,rgba(255,230,0,.16),transparent 34%),radial-gradient(ellipse at 90% 85%,rgba(255,184,0,.13),transparent 38%),linear-gradient(135deg,#090b10,#17160c 48%,#080a0e);color:#f7f7ef;margin:0;padding:20px 12px;min-height:100vh;overflow-x:hidden}
+#networkCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.65}
+.container{position:relative;z-index:1;max-width:940px;margin:18px auto;background:linear-gradient(145deg,rgba(25,27,30,.96),rgba(12,14,18,.96));border:1px solid rgba(255,230,0,.5);padding:clamp(17px,4vw,32px);border-radius:20px;box-shadow:0 0 35px rgba(255,214,0,.1),0 22px 70px rgba(0,0,0,.48);backdrop-filter:blur(12px)}
+h1,h2{text-align:center;color:var(--yellow);text-shadow:0 0 18px rgba(255,230,0,.2)}h1{font-size:clamp(24px,5vw,37px);margin:8px 0 10px}h2{font-size:20px;margin:3px 0 15px}p{line-height:1.7}.intro{text-align:center;color:#e8e4c9;max-width:780px;margin:0 auto 20px}.tag{display:inline-block;color:var(--green);border:1px solid rgba(140,255,154,.3);padding:6px 12px;border-radius:30px;font-size:12px;letter-spacing:.5px}
+.section{border:1px solid var(--line);border-radius:14px;padding:18px;margin:17px 0;background:linear-gradient(135deg,rgba(255,230,0,.05),rgba(255,255,255,.025))}
+label{display:block;margin-top:13px;color:#f5eebd;font-weight:600;font-size:14px}
+input,select,textarea{width:100%;padding:12px 13px;border-radius:9px;border:1px solid rgba(255,230,0,.28);margin-top:6px;background:rgba(5,7,10,.82);color:#fff;font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,230,0,.1)}
+select option{background:#111;color:#fff}textarea{min-height:105px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.hint{font-size:12px;color:#c9c4a9;margin-top:7px}
+.notice{padding:13px;border:1px solid rgba(140,255,154,.25);border-radius:10px;background:rgba(140,255,154,.045);color:#dce8d9;font-size:13px;line-height:1.7}
+.check{display:flex;gap:10px;align-items:flex-start;margin:16px 0;color:#eee8ca;font-size:13px}.check input{width:auto;margin:4px 0 0;accent-color:var(--yellow)}
+button{width:100%;padding:15px;background:linear-gradient(100deg,var(--yellow),var(--gold));color:#171300;border:0;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(255,200,0,.18);transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.07)}button:disabled{opacity:.65;cursor:wait;transform:none}
+footer{position:relative;z-index:1;text-align:center;padding:18px 10px;color:#aaa;font-size:12px}footer strong{color:var(--yellow)}
+@media(max-width:620px){body{padding:9px}.container{margin:7px auto}.section{padding:14px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<canvas id="networkCanvas" aria-hidden="true"></canvas>
+<main class="container">
+  <div style="text-align:center"><span class="tag">বাংলাদেশের সকল শিক্ষা প্রতিষ্ঠানের জন্য উন্মুক্ত</span></div>
+  <h1>TEAM SHT</h1>
+  <h2>Cyber Security Self Defense &amp; Roadmap</h2>
+  <p class="intro"><strong>সচেতনতামূলক ডেমো ক্লাস আয়োজনের আবেদন</strong><br>
+  বাংলাদেশের যেকোনো সরকারি বা বেসরকারি বিদ্যালয়, কলেজ কিংবা সমমানের শিক্ষা প্রতিষ্ঠানের শিক্ষার্থীরা নিজ প্রতিষ্ঠানে সাইবার নিরাপত্তা সচেতনতামূলক ডেমো ক্লাস আয়োজনের জন্য এই আবেদন জমা দিতে পারবেন। আবেদনটি সংশ্লিষ্ট প্রতিষ্ঠানের প্রধান শিক্ষক/অধ্যক্ষের বরাবর উপস্থাপনের উদ্দেশ্যে প্রস্তুত করা হবে।</p>
+
+  <div class="notice">
+    <strong>আবেদনের নির্দেশনা:</strong> শিক্ষার্থী/শিক্ষার্থী প্রতিনিধি প্রতিষ্ঠানের তথ্য ও প্রস্তাবিত আয়োজনের বিবরণ দিয়ে ফর্মটি পূরণ করবেন। আবেদন জমা হলে তথ্য TEAM SHT-এর নির্ধারিত ইমেইলে পাঠানো হবে। আয়োজনের তারিখ ও অনুমতি সংশ্লিষ্ট প্রতিষ্ঠানের প্রধান শিক্ষক/অধ্যক্ষ এবং আয়োজক দলের পারস্পরিক সমন্বয়ের মাধ্যমে নিশ্চিত হবে।
+  </div>
+
+  <form id="seminarForm" method="POST" action="https://formsubmit.co/systemhuntertaskforce@gmail.com">
+    <input type="hidden" name="_subject" value="New School/College Cyber Security Seminar Application - TEAM SHT">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+    <section class="section">
+      <h2>১. শিক্ষা প্রতিষ্ঠানের তথ্য</h2>
+      <label>প্রতিষ্ঠানের নাম *</label><input name="প্রতিষ্ঠানের নাম" required maxlength="180" placeholder="বিদ্যালয়/কলেজ/প্রতিষ্ঠানের পূর্ণ নাম">
+      <div class="grid">
+        <div><label>প্রতিষ্ঠানের ধরন *</label><select name="প্রতিষ্ঠানের ধরন" required><option value="">নির্বাচন করুন</option><option>সরকারি বিদ্যালয়</option><option>বেসরকারি বিদ্যালয়</option><option>সরকারি কলেজ</option><option>বেসরকারি কলেজ</option><option>মাদ্রাসা</option><option>কারিগরি/ভোকেশনাল প্রতিষ্ঠান</option><option>সমমানের অন্যান্য শিক্ষা প্রতিষ্ঠান</option></select></div>
+        <div><label>EIIN নম্বর (যদি থাকে)</label><input name="EIIN নম্বর" maxlength="30" placeholder="প্রযোজ্য হলে লিখুন"></div>
+        <div><label>বিভাগ *</label><select name="বিভাগ" required><option value="">বিভাগ নির্বাচন করুন</option><option>ঢাকা</option><option>চট্টগ্রাম</option><option>রাজশাহী</option><option>খুলনা</option><option>বরিশাল</option><option>সিলেট</option><option>রংপুর</option><option>ময়মনসিংহ</option></select></div>
+        <div><label>জেলা *</label><input name="জেলা" required maxlength="80" placeholder="জেলার নাম"></div>
+        <div><label>উপজেলা/থানা *</label><input name="উপজেলা বা থানা" required maxlength="100"></div>
+        <div><label>প্রতিষ্ঠানের পূর্ণ ঠিকানা *</label><input name="প্রতিষ্ঠানের ঠিকানা" required maxlength="250" placeholder="গ্রাম/এলাকা, ডাকঘর, উপজেলা"></div>
+      </div>
+      <label>প্রতিষ্ঠানের অফিসিয়াল ফোন নম্বর (যদি জানা থাকে)</label><input name="প্রতিষ্ঠানের ফোন" type="tel" maxlength="30" placeholder="01XXXXXXXXX">
+      <label>প্রধান শিক্ষক/অধ্যক্ষের নাম (যদি জানা থাকে)</label><input name="প্রধান শিক্ষক বা অধ্যক্ষের নাম" maxlength="120">
+    </section>
+
+    <section class="section">
+      <h2>২. আবেদনকারী শিক্ষার্থী/প্রতিনিধির তথ্য</h2>
+      <div class="grid">
+        <div><label>শিক্ষার্থীর পূর্ণ নাম *</label><input name="আবেদনকারী শিক্ষার্থীর নাম" required maxlength="120"></div>
+        <div><label>শ্রেণি/বর্ষ *</label><input name="শ্রেণি বা বর্ষ" required maxlength="60" placeholder="যেমন: নবম শ্রেণি / একাদশ / অনার্স ১ম বর্ষ"></div>
+        <div><label>বিভাগ/গ্রুপ (যদি থাকে)</label><input name="শিক্ষার্থীর বিভাগ বা গ্রুপ" maxlength="80"></div>
+        <div><label>রোল/আইডি (ঐচ্ছিক)</label><input name="শিক্ষার্থীর রোল বা আইডি" maxlength="40"></div>
+        <div><label>মোবাইল নম্বর *</label><input name="আবেদনকারীর মোবাইল" type="tel" required maxlength="25" placeholder="01XXXXXXXXX"></div>
+        <div><label>ইমেইল ঠিকানা (যদি থাকে)</label><input name="আবেদনকারীর ইমেইল" type="email" maxlength="150" placeholder="name@example.com"></div>
+      </div>
+      <label>আপনি কোন পরিচয়ে আবেদন করছেন? *</label><select name="আবেদনকারীর পরিচয়" required><option value="">নির্বাচন করুন</option><option>একক শিক্ষার্থী</option><option>শিক্ষার্থী প্রতিনিধি</option><option>শিক্ষার্থী সংগঠন/ক্লাবের প্রতিনিধি</option><option>শিক্ষার্থী দলের পক্ষ থেকে</option></select>
+    </section>
+
+    <section class="section">
+      <h2>৩. প্রস্তাবিত সেমিনার/ডেমো ক্লাসের তথ্য</h2>
+      <label>প্রোগ্রামের নাম</label><input name="প্রোগ্রামের নাম" value="Cyber Security Self Defense & Roadmap" readonly>
+      <div class="grid">
+        <div><label>সম্ভাব্য অংশগ্রহণকারীর সংখ্যা *</label><select name="সম্ভাব্য অংশগ্রহণকারীর সংখ্যা" required><option value="">নির্বাচন করুন</option><option>৩০–৫০ জন</option><option>৫১–১০০ জন</option><option>১০১–২০০ জন</option><option>২০১–৫০০ জন</option><option>৫০০ জনের বেশি</option></select></div>
+        <div><label>প্রস্তাবিত আয়োজনের তারিখ</label><input name="প্রস্তাবিত তারিখ" type="date" id="preferredDate"></div>
+        <div><label>প্রস্তাবিত সময়</label><select name="প্রস্তাবিত সময়"><option value="">নির্বাচন করুন</option><option>সকাল</option><option>দুপুর</option><option>বিকাল</option><option>প্রতিষ্ঠানের সুবিধামতো</option></select></div>
+        <div><label>আয়োজনের স্থান/কক্ষ (যদি জানা থাকে)</label><input name="প্রস্তাবিত ভেন্যু" maxlength="150" placeholder="যেমন: অডিটোরিয়াম / হলরুম / শ্রেণিকক্ষ"></div>
+      </div>
+      <label>কেন আপনার প্রতিষ্ঠানে এই সচেতনতামূলক ক্লাস আয়োজন করতে চান? *</label><textarea name="আয়োজনের উদ্দেশ্য" required maxlength="1500" placeholder="শিক্ষার্থীদের প্রয়োজন, আগ্রহ এবং প্রত্যাশিত উপকারিতা সংক্ষেপে লিখুন।"></textarea>
+      <label>অতিরিক্ত তথ্য/প্রস্তাব (ঐচ্ছিক)</label><textarea name="অতিরিক্ত তথ্য" maxlength="1000" placeholder="প্রতিষ্ঠানের নিয়ম, সম্ভাব্য সহযোগিতা বা অন্য কোনো তথ্য থাকলে লিখুন।"></textarea>
+    </section>
+
+    <section class="section">
+      <h2>৪. প্রধান শিক্ষক/অধ্যক্ষের বরাবর আবেদন</h2>
+      <p style="color:#e8e4c9;font-size:14px">এই ফর্মে দেওয়া তথ্যের ভিত্তিতে আবেদনটি সংশ্লিষ্ট প্রতিষ্ঠানের প্রধান শিক্ষক/অধ্যক্ষের সদয় বিবেচনা ও প্রয়োজনীয় অনুমতির জন্য উপস্থাপনের অনুরোধ হিসেবে পাঠানো হবে।</p>
+      <label class="check"><input type="checkbox" name="তথ্যের সত্যতা" value="আমি নিশ্চিত করছি যে প্রদত্ত তথ্য সঠিক" required><span>আমি নিশ্চিত করছি যে প্রদত্ত তথ্য যথাসম্ভব সঠিক এবং আমি আমার শিক্ষা প্রতিষ্ঠানে এই সচেতনতামূলক ডেমো ক্লাস আয়োজনের প্রস্তাব জমা দিতে সম্মত। *</span></label>
+      <label class="check"><input type="checkbox" name="অনুমতি সংক্রান্ত সম্মতি" value="প্রতিষ্ঠান কর্তৃপক্ষের পূর্বানুমতি প্রয়োজন" required><span>আমি বুঝেছি যে শিক্ষা প্রতিষ্ঠানে আয়োজনের আগে প্রধান শিক্ষক/অধ্যক্ষ বা সংশ্লিষ্ট কর্তৃপক্ষের অনুমতি নিতে হবে। *</span></label>
+    </section>
+
+    <button type="submit" id="submitBtn">আবেদন ইমেইলে জমা দিন</button>
+    <p id="formStatus" class="hint" role="status" style="text-align:center">সকল (*) চিহ্নিত তথ্য পূরণ করে আবেদন জমা দিন।</p>
+  </form>
+</main>
+<footer><strong>TEAM SHT</strong><br>Cyber Security Self Defense &amp; Roadmap — Awareness Demo Class</footer>
+
+<script>
+(function(){
+  const canvas=document.getElementById('networkCanvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');let w=0,h=0,particles=[];
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){const dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);particles=Array.from({length:Math.min(90,Math.max(30,Math.floor(w*h/17000)))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.6+.6}));}
+  function draw(){ctx.clearRect(0,0,w,h);for(let i=0;i<particles.length;i++){const p=particles[i];if(!reduced){p.x+=p.vx;p.y+=p.vy;}if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.fillStyle='#ffe600';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();for(let j=i+1;j<particles.length;j++){const q=particles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<125){ctx.strokeStyle='rgba(255,220,0,'+(0.16*(1-d/125))+')';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}}if(!reduced)requestAnimationFrame(draw);}
+  addEventListener('resize',resize);resize();draw();
+})();
+const dateInput=document.getElementById('preferredDate');
+const today=new Date();dateInput.min=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+document.getElementById('seminarForm').addEventListener('submit',function(e){
+  if(!this.reportValidity()){e.preventDefault();return;}
+  const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='আবেদন পাঠানো হচ্ছে...';
+  document.getElementById('formStatus').textContent='আপনার আবেদন ইমেইলে পাঠানোর জন্য প্রস্তুত করা হচ্ছে।';
+});
+</script>
+</body>
+</html>

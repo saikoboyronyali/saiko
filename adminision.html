@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEAMS-H-T IT INSTITUTE - Admission Form</title>
+<style>
+:root{
+  --yellow:#ffe600;
+  --gold:#ffb800;
+  --green:#8cff9a;
+  --ink:#090b10;
+  --panel:rgba(18,21,28,.88);
+  --line:rgba(255,230,0,.42);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 5%,rgba(255,230,0,.18),transparent 34%),
+    radial-gradient(ellipse at 90% 85%,rgba(255,184,0,.14),transparent 38%),
+    linear-gradient(135deg,#090b10 0%,#17160c 48%,#080a0e 100%);
+  color:#f7f7ef;margin:0;padding:24px 14px;min-height:100vh;overflow-x:hidden
+}
+#networkCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.72}
+.container{
+  position:relative;z-index:1;max-width:900px;margin:20px auto;
+  background:linear-gradient(145deg,rgba(25,27,30,.94),rgba(12,14,18,.94));
+  border:1px solid rgba(255,230,0,.55);padding:clamp(18px,4vw,32px);
+  border-radius:20px;box-shadow:0 0 35px rgba(255,214,0,.12),0 22px 70px rgba(0,0,0,.48);
+  backdrop-filter:blur(12px)
+}
+h1,h2{text-align:center;color:var(--yellow);text-shadow:0 0 18px rgba(255,230,0,.24)}
+h1{font-size:clamp(25px,5vw,38px);letter-spacing:1px;margin:8px 0 16px}
+h2{font-size:21px;margin:4px 0 18px}
+p{line-height:1.65}
+.container>p{text-align:center;color:#e8e4c9}
+.section{
+  border:1px solid var(--line);border-radius:14px;padding:18px;margin:18px 0;
+  background:linear-gradient(135deg,rgba(255,230,0,.055),rgba(255,255,255,.025));
+  box-shadow:inset 0 0 22px rgba(255,230,0,.025)
+}
+label{display:block;margin-top:13px;color:#f5eebd;font-weight:600;font-size:14px}
+input,select,textarea{
+  width:100%;padding:12px 13px;border-radius:9px;border:1px solid rgba(255,230,0,.28);
+  margin-top:6px;background:rgba(5,7,10,.78);color:#fff;font:inherit;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,230,0,.12)}
+input[type=file]{padding:9px;color:#d9d6c6}
+input[type=date]{color-scheme:dark}
+select option{background:#111;color:#fff}
+button{
+  width:100%;padding:15px;background:linear-gradient(100deg,var(--yellow),var(--gold));
+  color:#171300;border:0;border-radius:10px;font-size:17px;font-weight:800;
+  cursor:pointer;box-shadow:0 8px 24px rgba(255,200,0,.2);transition:transform .2s,filter .2s
+}
+button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.photo{
+  width:120px;height:150px;border:2px dashed var(--yellow);margin:18px auto;
+  display:flex;align-items:center;justify-content:center;border-radius:10px;
+  color:var(--yellow);background:rgba(255,230,0,.045);box-shadow:0 0 18px rgba(255,230,0,.08)
+}
+@media(max-width:600px){body{padding:10px}.container{margin:8px auto;border-radius:15px}.section{padding:14px}}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  #networkCanvas{display:none}
+  .container{background:#fff;color:#000;border:0;box-shadow:none}
+  h1,h2,label{color:#000;text-shadow:none}
+  .section{background:#fff;border:1px solid #999}
+  input,select,textarea{background:#fff;color:#000;border:1px solid #aaa}
+  button{display:none}
+  .photo{color:#000;border-color:#555}
+}
+</style>
+</head>
+<body><canvas id="networkCanvas" aria-hidden="true"></canvas>
+<form class="container" id="formArea" method="POST" action="https://formsubmit.co/systemhuntertaskforce@gmail.com">
+<h1>S-H-T IT INSTITUTE</h1>
+<p style="text-align:center">
+BDCC ID: 7669<br>
+CONNECT: BD Cyber Community<br>
+CTF TEAM ID: 427712<br>
+</p>
+
+<div class="section">
+<h2>Student Information</h2>
+<label>Full Name</label><input required name="student_full_name">
+<label>Father's Name</label><input name="father_name">
+<label>Mother's Name</label><input name="mother_name">
+<label>Mobile Number</label>
+<input value="+880" name="student_mobile">
+<label>Date of Birth</label><input type="date" name="student_date_of_birth">
+<label>Gender</label>
+<select name="student_gender"><option>Male</option><option>Female</option></select>
+<label>NID / Birth Certificate</label><input name="student_nid_or_birth_certificate">
+</div>
+
+<div class="section">
+<h2>Course Information</h2>
+<label>Course Name</label><input name="course_name" required>
+<label>Batch No</label><input name="batch_number">
+<label>Class Type</label>
+<select name="class_type"><option>Online</option><option>Offline</option></select>
+</div>
+
+<div class="section">
+<h2>Guardian Information</h2>
+<label>Guardian Name</label><input required name="guardian_name">
+<label>Guardian Number</label>
+<input value="+880" name="guardian_number">
+<label>Date of Birth</label><input type="date" name="guardian_date_of_birth">
+<label>Gender</label>
+<select name="guardian_gender"><option>Male</option><option>Female</option></select>
+<label>NID Card No</label><input name="guardian_nid">
+</div>
+
+<div class="section">
+<h2>Payment Information</h2>
+<p><b>Registration Fee:</b> 750 BDT</p>
+<p><b>Nagad: 01783972659</b> Parsonal</p>
+<p><b>Bkash: 01789376043</b> Parsonal</p>
+<label>bKash / Nagad Number</label>
+<input value="+880" name="payment_mobile">
+<label>Transaction ID</label>
+<input required name="transaction_id">
+</div>
+
+<input type="hidden" name="_subject" value="New Student Admission Form - S-H-T IT INSTITUTE">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<button type="submit">Submit Application</button>
+<p style="text-align:center;color:#e8e4c9;font-size:13px;margin-top:12px">
+  Your application information will be sent to the institute's email.
+</p>
+</form>
+
+<script>
+/* Network Canvas: animated yellow-gradient particles and connecting lines */
+(function(){
+  const canvas=document.getElementById('networkCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let width=0,height=0,particles=[];
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    width=window.innerWidth;height=window.innerHeight;
+    canvas.width=width*dpr;canvas.height=height*dpr;
+    canvas.style.width=width+'px';canvas.style.height=height+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const count=Math.min(95,Math.max(35,Math.floor(width*height/15000)));
+    particles=Array.from({length:count},()=>({
+      x:Math.random()*width,y:Math.random()*height,
+      vx:(Math.random()-.5)*.42,vy:(Math.random()-.5)*.42,
+      r:Math.random()*1.8+.7
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,width,height);
+    for(let i=0;i<particles.length;i++){
+      const p=particles[i];
+      if(!reduceMotion){p.x+=p.vx;p.y+=p.vy;}
+      if(p.x<0||p.x>width)p.vx*=-1;
+      if(p.y<0||p.y>height)p.vy*=-1;
+      const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,13);
+      glow.addColorStop(0,'rgba(255,230,0,.85)');
+      glow.addColorStop(1,'rgba(255,184,0,0)');
+      ctx.fillStyle=glow;ctx.beginPath();ctx.arc(p.x,p.y,13,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#ffe600';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+      for(let j=i+1;j<particles.length;j++){
+        const q=particles[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);
+        if(d<135){
+          ctx.strokeStyle='rgba(255,220,0,'+(0.2*(1-d/135))+')';
+          ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+        }
+      }
+    }
+    if(!reduceMotion) requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  resize();draw();
+})();
+</script>
+</body>
+</html>
